@@ -1,0 +1,39 @@
+digraph "classes_No_Name" {
+charset="utf-8"
+rankdir=BT
+"2" [shape="record", label="ArmoredOrcaWithLasers"];
+"3" [shape="record", label="OrcaWithLasers"];
+"4" [shape="record", label="Orca"];
+"5" [shape="record", label="Animal"];
+"6" [shape="record", label="LaserMixin"];
+"7" [shape="record", label="Weapon"];
+"8" [shape="record", label="ArmorMixin"];
+"9" [shape="record", label="Shark"];
+"10" [shape="record", label="ArmoredSharkWithLasers"];
+"11" [shape="record", label="SharkWithLasers"];
+"12" [shape="record", label="OrcaWithNunchucks"];
+"13" [shape="record", label="NunchuckMixin"];
+"14" [shape="record", label="ArmoredOrcaWithNunchucks"];
+"15" [shape="record", label="ArmoredSharkWithNunchucks"];
+"16" [shape="record", label="SharkWithNunchucks"];
+"2" -> "3" [arrowtail="none", arrowhead="empty"];
+"2" -> "8" [arrowtail="none", arrowhead="empty"];
+"3" -> "4" [arrowtail="none", arrowhead="empty"];
+"3" -> "6" [arrowtail="none", arrowhead="empty"];
+"4" -> "5" [arrowtail="none", arrowhead="empty"];
+"6" -> "7" [arrowtail="none", arrowhead="empty"];
+"9" -> "5" [arrowtail="none", arrowhead="empty"];
+"10" -> "11" [arrowtail="none", arrowhead="empty"];
+"10" -> "8" [arrowtail="none", arrowhead="empty"];
+"11" -> "9" [arrowtail="none", arrowhead="empty"];
+"11" -> "6" [arrowtail="none", arrowhead="empty"];
+"12" -> "4" [arrowtail="none", arrowhead="empty"];
+"12" -> "13" [arrowtail="none", arrowhead="empty"];
+"13" -> "7" [arrowtail="none", arrowhead="empty"];
+"14" -> "12" [arrowtail="none", arrowhead="empty"];
+"14" -> "8" [arrowtail="none", arrowhead="empty"];
+"15" -> "16" [arrowtail="none", arrowhead="empty"];
+"15" -> "8" [arrowtail="none", arrowhead="empty"];
+"16" -> "9" [arrowtail="none", arrowhead="empty"];
+"16" -> "13" [arrowtail="none", arrowhead="empty"];
+}

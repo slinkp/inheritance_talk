@@ -1,0 +1,26 @@
+digraph "classes_No_Name" {
+charset="utf-8"
+rankdir=BT
+"2" [shape="record", label="OrcaWithLasers"];
+"3" [shape="record", label="Orca"];
+"4" [shape="record", label="Animal"];
+"5" [shape="record", label="LaserMixin"];
+"6" [shape="record", label="Weapon"];
+"7" [shape="record", label="Shark"];
+"8" [shape="record", label="OrcaWithNunchucks"];
+"9" [shape="record", label="NunchuckMixin"];
+"10" [shape="record", label="SharkWithLasers"];
+"11" [shape="record", label="SharkWithNunchucks"];
+"2" -> "3" [arrowtail="none", arrowhead="empty"];
+"2" -> "5" [arrowtail="none", arrowhead="empty"];
+"3" -> "4" [arrowtail="none", arrowhead="empty"];
+"5" -> "6" [arrowtail="none", arrowhead="empty"];
+"7" -> "4" [arrowtail="none", arrowhead="empty"];
+"8" -> "3" [arrowtail="none", arrowhead="empty"];
+"8" -> "9" [arrowtail="none", arrowhead="empty"];
+"9" -> "6" [arrowtail="none", arrowhead="empty"];
+"10" -> "7" [arrowtail="none", arrowhead="empty"];
+"10" -> "5" [arrowtail="none", arrowhead="empty"];
+"11" -> "7" [arrowtail="none", arrowhead="empty"];
+"11" -> "9" [arrowtail="none", arrowhead="empty"];
+}

@@ -1,0 +1,11 @@
+body {
+    font-size: 200%;
+    font-family: "Helvetica Neue",Arial,sans-serif;
+    color: #555;
+    background-color: #F3F7FA;
+}
+
+h1, h2, h3, h4, h5, {
+    color: #332;
+}
+

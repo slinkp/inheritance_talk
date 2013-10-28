@@ -1,0 +1,15 @@
+digraph "classes_No_Name" {
+charset="utf-8"
+rankdir=BT
+"2" [shape="record", label="Nunchuck"];
+"3" [shape="record", label="Weapon"];
+"4" [shape="record", label="Shark"];
+"5" [shape="record", label="Animal"];
+"6" [shape="record", label="Laser"];
+"7" [shape="record", label="Armor"];
+"8" [shape="record", label="Orca"];
+"2" -> "3" [arrowtail="none", arrowhead="empty"];
+"4" -> "5" [arrowtail="none", arrowhead="empty"];
+"6" -> "3" [arrowtail="none", arrowhead="empty"];
+"8" -> "5" [arrowtail="none", arrowhead="empty"];
+}

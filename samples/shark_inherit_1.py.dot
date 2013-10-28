@@ -1,0 +1,9 @@
+digraph "classes_No_Name" {
+charset="utf-8"
+rankdir=BT
+"2" [shape="record", label="Shark"];
+"3" [shape="record", label="SharkWithLasers"];
+"4" [shape="record", label="LaserMixin"];
+"3" -> "2" [arrowtail="none", arrowhead="empty"];
+"3" -> "4" [arrowtail="none", arrowhead="empty"];
+}

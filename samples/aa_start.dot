@@ -1,0 +1,29 @@
+digraph "classes_No_Name" {
+charset="utf-8"
+rankdir=BT
+"2" [shape="record", label="HotContent"];
+"3" [shape="record", label="BaseStoryApi"];
+"4" [shape="record", label="BaseHandler"];
+"5" [shape="record", label="ArgumentMixin"];
+"6" [shape="record", label="RequestHandler"];
+"7" [shape="record", label="AudienceAnalysisBaseHandler"];
+"8" [shape="record", label="TopDomainsHandler"];
+"9" [shape="record", label="InsightHandlerBase"];
+"10" [shape="record", label="ApiMixin"];
+"11" [shape="record", label="TopicsHandler"];
+"12" [shape="record", label="RecentContent"];
+"13" [shape="record", label="ClickatronProxy"];
+"2" -> "3" [arrowtail="none", arrowhead="empty"];
+"2" -> "7" [arrowtail="none", arrowhead="empty"];
+"3" -> "4" [arrowtail="none", arrowhead="empty"];
+"4" -> "5" [arrowtail="none", arrowhead="empty"];
+"4" -> "6" [arrowtail="none", arrowhead="empty"];
+"7" -> "4" [arrowtail="none", arrowhead="empty"];
+"8" -> "9" [arrowtail="none", arrowhead="empty"];
+"9" -> "4" [arrowtail="none", arrowhead="empty"];
+"9" -> "10" [arrowtail="none", arrowhead="empty"];
+"9" -> "5" [arrowtail="none", arrowhead="empty"];
+"11" -> "9" [arrowtail="none", arrowhead="empty"];
+"12" -> "7" [arrowtail="none", arrowhead="empty"];
+"12" -> "13" [arrowtail="none", arrowhead="empty"];
+}
