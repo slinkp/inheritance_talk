@@ -1,3 +1,7 @@
+#!/bin/bash
+
+source bin/activate
+
 cd samples
 
 for f in *py; do

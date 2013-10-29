@@ -1,12 +1,12 @@
 :css: static/style.css
 
-:data-transition-duration: 1200
+:data-transition-duration: 2400
 
 .. title:: incremental non-design
 
-======================
-Incremental Non-Design
-======================
+=========================
+Incremental (non-) Design
+=========================
 
  .. image:: static/cute-collapsing-towers-animation.gif 
 
@@ -211,7 +211,14 @@ And now we want to allow them to wear armor.
 
 ----
 
-:data-rotate: 180
+.. :data-rotate: 180
+
+:data-x: r0
+:data-y: 2500
+:data-z: 4000
+:data-rotate-x: 90
+:data-rotate-z: 90
+
 
 .. image:: static/explosion.gif
    :height: 600px
@@ -223,6 +230,11 @@ Class explosion.
 ----
 
 :data-rotate: 0
+:data-x: r0
+:data-y: r0
+:data-z: 0
+:data-rotate-x: 180
+:data-rotate-z: 180
 
 Every concept we add makes more and more classes.
 
@@ -230,9 +242,18 @@ But even if we never do, it's already bad, because...
 
 ----
 
+:data-rotate: 0
+:data-x: r2000
+:data-y: r2000
+:data-z: r0
+:data-rotate-x: 0
+:data-rotate-z: 0
+
 
 Yo-yo problem
 ===============
+
+:data-y: r0
 
 https://en.wikipedia.org/wiki/Yo-yo_problem
 
@@ -337,7 +358,7 @@ More classes + more methods = more yo-yo
 ----
 
 :data-y: r-6000
-:data-x: r1400
+:data-x: r2000
 
 
 But that's all contrived!
@@ -350,7 +371,7 @@ Yes, it's a bad made-up design that nobody would ever do.
 ----
 
 :data-y: r0
-:data-x: r1400
+:data-x: r2000
 
 
 Overuse of Inheritance & Mixins - Examples in the Wild
@@ -567,11 +588,13 @@ References / Inspiration / Shamelessly Stolen
 ---------------------------------------------
 
 * "End of Object Inheritance" talk, PyCon 2013
-  - http://pyvideo.org/video/1684/
+  - Video http://pyvideo.org/video/1684/
   - slides unfortunately not readable alone, really should watch it.
 
 
 * "API Design for Library Authors" - Chris McDonough's talk @ PyCon 2013
+  - Video http://pyvideo.org/video/1705/api-design-for-library-authors
+  - Slides https://speakerdeck.com/pyconslides/api-design-for-libraries-by-chris-mcdonough
   - Relevant takeaway: Don't make your users inherit from your classes.
   - introduced me to "yoyo problem".
 
