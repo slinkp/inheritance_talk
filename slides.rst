@@ -1,6 +1,6 @@
 :css: static/style.css
 
-:data-transition-duration: 2400
+:data-transition-duration: 1500
 
 .. title:: incremental non-design
 
@@ -11,11 +11,11 @@ Incremental (non-) Design
  .. image:: static/cute-collapsing-towers-animation.gif 
 
 Paul Winkler
-@bitly
-10/28/2013
+@percolate
+
+revised 2014-06-20 for PyGotham proposal
 
 
- 
 
 ----
 
@@ -31,8 +31,6 @@ Intro / Disclaimer
   probably never heard any of this and may learn something. Wanted to share
   my observations and opinions and hopefully we'll all (including me) learn
   something.
-  Also, hope that other people will do tech talks during these meetings.
-  Also, MORE BITLY INTERNAL PRESENTATIONS IN GENERAL
 
 ----
 
@@ -54,9 +52,9 @@ We all do it, let's think about it and stop.
 Backstory
 ============
 
-Last month: Working on Audience Analysis endpoints.
+Recently I was working on some rest API endpoints for my employer.
 
-Needed to add and endpoint, and reuse some existing features.
+Needed to add an endpoint, and reuse some existing features.
 
 Solution: Factored out methods into a new shared base class
 (actually a mixin).
@@ -65,7 +63,7 @@ There were already other base classes, some shared and some not.
 Factored out shared features into two mixins.
 
 .. note::
-  does everybody know what a mixin is? in python?
+  Question for audience: does everybody know what a mixin is? in python?
 
 
 ----
@@ -78,11 +76,17 @@ Problem solved! Go home.
 
 ----
 
+I started with this...
+
 .. image:: static/aa_start.dot.svg
+   :width: 800px
 
 ----
 
+I ended up with this...
+
 .. image:: static/aa_final.dot.svg
+   :width: 800px
 
 
 ----
@@ -95,8 +99,10 @@ https://twitter.com/slinkp23/status/382568693466935296
 ----
 
 
-Confessions of a Recovering Zope Programmer
-============================================
+Confession
+===============
+
+Hi, my name is Paul, and I'm a recovering Zope 2 programmer.
 
 Perhaps this makes me overly sensitive?
 
@@ -107,16 +113,18 @@ Perhaps this makes me overly sensitive?
 
 So I should know better.
 
+(*part* of the inheritance tree of the ironically named SimpleItem)
+
 ----
 
 
-My Worst Practice: Incremental Non-Design
+A "Worst Practice": Incremental Non-Design
 -------------------------------------------
 
 Default OO design: big inheritance chain.
 (Single or multiple.)
 
-Default refactoring:  Make moar base classes.
+Default refactoring:  Make moar base classes!
 
 Result: Big complex inheritance graph grows and grows.
 
@@ -142,6 +150,10 @@ Underlying principle in "Design Patterns" (aka the "Gang of Four" book)
 BUT WHY?
 ========
 
+.. note::
+
+   What's bad about inheritance and what's good about composition?
+
 ----
 
 Symptoms of Inheritance Overuse
@@ -153,13 +165,15 @@ Symptoms of Inheritance Overuse
 
 * Poor Separation of Concerns
 
-Let's see these by example.
+Let's explain these by example.
 
 
 ----
 
 Contrived Example:
 ------------------
+
+I just want a freakin' shark with lasers.
 
 .. code:: python
 
@@ -168,8 +182,8 @@ Contrived Example:
 .. image:: static/shark-stealing-a-camera-lasers_01.jpg
    :width: 400px
 
-.. image:: static/f2eb_shark_w_frickin_laser_pointer.jpg
-   :width: 400px
+.. .. image:: static/f2eb_shark_w_frickin_laser_pointer.jpg
+..   :width: 400px
 
 ----
 
@@ -199,6 +213,9 @@ But now we want an orca with nunchaku.
    :width: 1000px
 
 ----
+
+Hmm, there's some commonalities we can factor into
+base classes...
 
 .. image:: static/shark_inherit_2.py.dot.svg
    :width: 1000px
@@ -261,18 +278,26 @@ Yo-yo problem
 https://en.wikipedia.org/wiki/Yo-yo_problem
 
   "Often we get the feeling of riding a yoyo when we
-  try to understand one these [sic] message trees."
+  try to understand one [of] these message trees."
   -- Taenzer, Ganti, and Podar, 1989
 
 
 .. note::
 
-  The source of an attribute or method is implicit.
+  With inheritance, when you look at a method call, the place where
+  that method is defined is implicit.
+  Same with attribute assignments.
+  If you want to know where it's defined, you have to go hunting for it.
   When self.foo() calls self.bar() calls self.baz() calls self.fleem()
-  and each of those could be defined in any or all of 20 inherited classes.
-  Only the method name gives a clue; "self" is useless.
-  Put another way: when you see "self", you don't know if it's shark, or a
-  base Animal, or a thing with lasers, or a base Weapon, or a thing with armor? You have to look all over, with only the names to give you clues.
+  and each of those could be defined in any or all of 20 inherited classes,
+  you find yourself bouncing up and down through the inheritance tree
+  looking for these method definitions. If any are overridden,
+  you have to also reconstruct Python's method resolution order
+  in your head, or find a tool to do it for you.
+  Put another way: when you see "self", you don't know if it currently
+  means a shark, or a base Animal, or a thing with lasers, or a base
+  Weapon, or a thing with armor?  You have to look all over, with only
+  the names to give you clues.
 
 ----
 
@@ -281,6 +306,8 @@ https://en.wikipedia.org/wiki/Yo-yo_problem
 
 Yo-yo problem larval stage
 ===========================
+
+It starts innocuously enough...
 
 .. code:: python
 
@@ -382,15 +409,15 @@ Overuse of Inheritance & Mixins - Examples in the Wild
 
  - Zope 2 - OFS.Item
  - Django "Generic" views
- - DjangoRestFramework - old version
+ - DjangoRestFramework - early versions
  - a bunch of things I wrote, eg. OpenBlock scraper mini-framework
 
 ----
 
-.. image:: static/shareabouts.dot.svg
-   :width: 1200px
-
-----
+.. .. image:: static/shareabouts.dot.svg
+..    :width: 1200px
+..
+.. ----
 
 
 None of this is news.  Why do we all still overuse inheritance?
@@ -409,32 +436,48 @@ None of this is news.  Why do we all still overuse inheritance?
 
 ----
 
-.. Possibly Controversial Opinion: Mixins are bad more often than good.
-.. --------------------------------------------------------------------
+Possibly Controversial Opinion: Mixins are bad more often than good.
+--------------------------------------------------------------------
 
-.. ----
+----
 
-.. Mixins are good...
-.. --------------------
+Mixins are good...
+--------------------
 
-..  - mixins are good because each base class does one thing
-..  - convenient because you can combine these base classes to get
-..    different combinations of behavior.
+- mixins are good because each base class does one thing
+- convenient because you can combine these base classes to get
+  different combinations of behavior.
 
-.. ----
 
-.. BUT mixins are bad...
-.. ------------------------
 
-..  - multiple inheritance gone bananas.
-..  - easy to assemble lego-style iff you understand the classes
-..    and how they interact.
-..  - very hard to understand if you don't.
-..  - very hard to debug a concrete class made by someone else, or by yourself last month
-..    - python 2.5 does not give us tools to talk about contracts, so you really have to read every line to understand what the implicit contract is. What can I mix this into?
+----
 
-.. ----
+BUT mixins are bad...
+------------------------
 
+- multiple inheritance gone bananas.
+- easy to assemble lego-style iff you understand the classes
+  and how they interact.
+- internal interactions get VERY complex
+- very hard to understand if you don't.
+- very hard to debug a concrete class made by someone else, or by yourself last month
+- python 2 does not give us many tools to talk about contracts, so you really have to read every line to understand what the implicit contract is. What can I mix this into?
+
+----
+
+... not always bad
+------------------
+
+Some characteristics of nice mixins:
+
+- does one thing, or only a couple very closely related things
+- unlikely to need to use it polymorphically / override its methods
+
+----
+
+"Favor Composition Over Inheritance" again
+
+----
 
 Composition: Usually Better
 ------------------------------
@@ -466,10 +509,15 @@ Better: Fewer Classes
 
 ----
 
-Better:  Separation of Concerns, and Less Yo-yo Problem
+Better:  Separation of Concerns
 ---------------------------------------------------------
 
 - "self.weapon" namespace is a nice bundling of related functionality
+
+----
+
+Better: Less Yo-yo Problem
+--------------------------------------
 
 .. code:: python
 
@@ -502,71 +550,46 @@ and/or yet more classes:
 
 ----
 
-Where do we overuse inheritance at Bitly?
--------------------------------------------
-
-I've most often seen it in tornado.web.Handler subclasses.
-
-Not nearly as pathological, but still gets a bit rough.
-
-----
-
-
-
-Aside: Mixins not always bad
-------------------------------
-
-eg. libbitly.ArgumentMixin
-
- - provides some common special handling of getting args
- - not really useful outside a Handler class, so, okay that it expects to be mixed in to a Handler
- - does only a couple closely related things
- - unlikely to need to use it polymorphically / override its methods
-
-
-
-----
-
 Back to the backstory...
 =========================
 
 Audience Analysis:
 
-Two different handlers need to show click rates.
+Two different views / handlers need to show click rates.
 
  - I would prefer them to *have* a ClickRateFetcher, not *be* a
    ClickRateFetcher, since that's orthogonal to serving a request.
 
- - but I need to get the info from Clickatron...
+ - but I need to get the info from an external service...
 
- - clickatron is accessed via ClickatronProxy which depends on being
-   mixed in to a Handler
-
+ - access to this service is already provided via ClickServiceProxy
+   which depends on being mixed in to the view.
 
 ----
 
 Choices:
 
-   1. write my own Clickatron client (ugh)
+   1. write my a new click service client that isn't a mixin (ugh)
 
-   2. or ClickRateFetcher and the Handler can refer to and call each other
+   2. or, the ClickRateFetcher and the Handler can refer to and call each other
 
    3. or suck it up and put the ClickRateFetcher in the inheritance graph
+
+
+----
+
+When I run out of time, I do the easiest thing - just inherit.
+
+Remember the title of this talk?
+
+Incremental Non-Design.
 
 ----
 
 Untangling is hard
 ===================
 
-.. code:: python
-
-    class ClickatronProxy(object):
-        """
-        Mixin class for querying clickatron in conjunction
-        with GenericMetricsHandler properties
-        """
-
-Why does a clickatron client need to *be* a request handler anyway?
+Why does the ClickServiceProxy need to *be* a request handler anyway?
 
 Maybe it doesn't.  Or shouldn't.
 
@@ -578,7 +601,7 @@ there's a lot of inertia.
   So existing inheritance hierarchy tends to encourage more inheritance,
   because it's easier than puzzling out how to do without it.
 
-  Next time I'll try the reference.
+  Next time I'll try the reference (option 2).
 
 
 ----
@@ -602,5 +625,4 @@ References / Inspiration / Shamelessly Stolen
   - introduced me to "yoyo problem".
 
 * "Composability Through Multiple Inheritance" - opposing view, also PyCon 2013. https://us.pycon.org/2013/schedule/presentation/110/
-
 

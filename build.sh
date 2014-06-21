@@ -14,10 +14,10 @@ fi
 source ./bin/activate || barf "No virtualenv?"
 
 # Install stuff if needed
-TMP_REQ=`mktemp -t req.txt`
-safe ./bin/pip freeze > $TMP_REQ 
-cmp -s $TMP_REQ requirements.txt || safe ./bin/pip install -r requirements.txt
-rm -f $TMP_REQ
+#TMP_REQ=`mktemp -t req.txt`
+#safe ./bin/pip freeze > $TMP_REQ 
+#cmp -s $TMP_REQ requirements.txt || safe ./bin/pip install -r requirements.txt
+#rm -f $TMP_REQ
 
 # Build the graphics
 
@@ -25,7 +25,7 @@ safe cd samples
 
 for f in *py; do
     pyreverse -A -k $f
-    mv classes_no_Name.dot $f.dot
+    mv classes_No_Name.dot $f.dot
 done
 
 dot -? > /dev/null 2>&1 || barf "You don't appear to have the 'dot' command. Install graphviz.  Eg. on OSX with Homebrew, try 'brew install graphviz'."
