@@ -168,6 +168,9 @@ Contrived Example:
 .. image:: static/shark-stealing-a-camera-lasers_01.jpg
    :width: 400px
 
+.. image:: static/f2eb_shark_w_frickin_laser_pointer.jpg
+   :width: 400px
+
 ----
 
 Bad implementation
