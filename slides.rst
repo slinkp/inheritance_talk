@@ -8,40 +8,132 @@
 Incremental (non-) Design
 =========================
 
- .. image:: static/cute-collapsing-towers-animation.gif 
+Fighting Entropy like Sisyphus!
+
+ ..
+    .. image:: static/cute-collapsing-towers-animation.gif 
 
 Paul Winkler
 @percolate
 
-revised 2014-06-20 for PyGotham proposal
-
-
+revised for PyGotham NYC 2014
 
 ----
 
-Intro / Disclaimer
-=====================
+Dumping Ground
+=======================
+
+Eclipse plugin that does automatically replace inheritance -> comp or
+delegation: http://www.fernuni-hagen.de/ps/prjs/RIWD/
+
+Tools:
+
+ pylint (pyreverse)
+ graphviz (dot)
+
+TODO: kitten gif attribution
+
+----
+
+Intro: Who is this for?
+=======================
 
 
 .. note::
 
   There's some fairly beginner-level OO design tips here.
   Some of you know all of this. Some of you know more than me about all of
-  this.  Some of you may disagree with me about all of this.  Some of you have
+  this.  Some of you may disagree with me about this.  Some of you have
   probably never heard any of this and may learn something. Wanted to share
-  my observations and opinions and hopefully we'll all (including me) learn
+  my observations and opinions and hopefully all of us (including me) will learn
   something.
+
+  Who here would call themselves pretty experienced at OO design?
+
+  Who here is just starting at OO design?
+
+  Out of curiosity, anybody here who came to Python after starting out in
+  languages that aren't, or at least aren't commonly, done with classes and
+  inheritance?  (Javascript, PHP)?
+
+  Anybody who learned Python *specifically* so they could do Django?
+  (TODO: get back to this latter - what I think is significant about that)
 
 ----
 
-Thesis
-------
+Thesis: Emergent design doesn't always emerge
+===============================================
 
-Inheritance is powerful but easily overused.
+.. note::
+
+  Back story: Most software I've worked on is developed using some agile
+  approach and deployed on the web on a frequent basis. There are no big
+  releases, just a constant stream of improvements.
+
+  How many people work in similar situations?
+
+  In this world, it's taken as gospel truth that the old big-design-up-front
+  approaches such as the justly maligned "waterfall" process aren't worth
+  it. Instead we have embraced the object oriented best practice mantra:
+  refactor constantly. Do the simplest thing and always be improving your
+  design and all will be well.
+
+  Unfortunately, I'm going to argue, we often do a poor job of this.  And a
+  good design fails to emerge.  What emerges instead is often very messy.  And
+  this happens not through any particularly bad decision but through a series
+  of decisions that in isolation make good sense but taken together add up to
+  an overly complex software design.
+
+  And I'm going to say up front that I don't have a grand solution here.
+  The solution is vigilance and being aware of the pitfalls.
+
+----
+
+"We must imagine Sisyphus happy"
+==================================
+
+ .. image:: http://thisconjecture.files.wordpress.com/2014/02/whsyh0b.gif
+    :width: 500px
+
+.. note::
+
+  Hence, Sisyphus. We are never going to be done pushing the design rock up the
+  hill. Or the kitten up the slide.
+
+(this title is from Camus)
+
+----
+
+Try to enjoy it!
+====================
+
+ .. image:: static/sisyphus_happy_excerpt.png
+
+from http://existentialcomics.com/comic/29
+
+
+----
+
+How do things get worse?
+========================
+
+For today, focusing on overuse of inheritance.
+
+.. note::
+
+  This talk could go on forever so I'm picking on my favorite target.
+
+----
+
+
+Inheritance
+-------------
+
+Powerful!
 
 Inheritance, overused, is bad design with real negative consequences.
 
-Inheritance overuse is easy to do without intention.
+Overuse is easy to do without intention.
 (In fact, almost inevitable.)
 
 We all do it, let's think about it and stop.
@@ -49,22 +141,21 @@ We all do it, let's think about it and stop.
 
 ----
 
-Backstory
+A story
 ============
 
 Recently I was working on some rest API endpoints for my employer.
 
-Needed to add an endpoint, and reuse some existing features.
+Needed to add an endpoint, and reuse some existing behavior.
 
-Solution: Factored out methods into a new shared base class
-(actually a mixin).
+There was already an inheritance hierarchy in place.
 
-There were already other base classes, some shared and some not.
-Factored out shared features into two mixins.
+Solution: Factored out methods into two new shared base classes
+(used as mixins).
 
 .. note::
-  Question for audience: does everybody know what a mixin is? in python?
 
+   should this come AFTER the shark stuff?
 
 ----
 
@@ -88,6 +179,9 @@ I ended up with this...
 .. image:: static/aa_final.dot.svg
    :width: 800px
 
+.. note:: TODO: maybe show an alternate design where we have-a fetcher
+   instead of is-a fetcher?
+   And gradually do that to the whole graph?
 
 ----
 
@@ -132,7 +226,8 @@ It's not just me.
 
 ----
 
-What should we do instead?
+Why is this bad? And what should we do instead?
+------------------------------------------------
 
 ----
 
@@ -163,7 +258,10 @@ Symptoms of Inheritance Overuse
 
 * "Yo-yo" problem
 
-* Poor Separation of Concerns
+* Poor Separation of Concerns (tight coupling)
+
+* Implicit Contract Everywhere (low cohesion)
+
 
 Let's explain these by example.
 
@@ -173,7 +271,7 @@ Let's explain these by example.
 Contrived Example:
 ------------------
 
-I just want a freakin' shark with lasers.
+Your client just wants a freakin' shark with lasers.
 
 .. code:: python
 
@@ -187,7 +285,7 @@ I just want a freakin' shark with lasers.
 
 ----
 
-Bad implementation
+Quick and Easy...
 --------------------
 .. code:: python
 
@@ -353,6 +451,13 @@ Imagine that:
 
 - Who is "self"?
 
+.. note::
+
+  It's interesting to ask yourself in each method definition,
+  what kind of object do I mean when I say "self"?
+  Implicitly it could rely on any combination of behaviors or states
+  supported by any of the base classes.
+
 
 ----
 
@@ -404,15 +509,15 @@ Yes, it's a bad made-up design that nobody would ever do.
 :data-x: r2000
 
 
-Overuse of Inheritance & Mixins - Examples in the Wild
-==========================================================
+..
+   Overuse of Inheritance & Mixins - Examples in the Wild
+   ==========================================================
 
- - Zope 2 - OFS.Item
- - Django "Generic" views
- - DjangoRestFramework - early versions
- - a bunch of things I wrote, eg. OpenBlock scraper mini-framework
+    - Zope 2 - OFS.Item
+    - Django "Generic" views
+    - a bunch of things I wrote, eg. OpenBlock scraper mini-framework
 
-----
+   ----
 
 .. .. image:: static/shareabouts.dot.svg
 ..    :width: 1200px
@@ -427,8 +532,7 @@ None of this is news.  Why do we all still overuse inheritance?
 
 - D.R.Y. encourages quick easy refactoring
 
-- Reuse via adding more base classes is almost always
-  obvious and easy.
+- Easiest path to reuse: Add more base classes!
 
 - Alternatives may not be as intuitive or obvious.
 
@@ -436,8 +540,18 @@ None of this is news.  Why do we all still overuse inheritance?
 
 ----
 
-Possibly Controversial Opinion: Mixins are bad more often than good.
---------------------------------------------------------------------
+Possibly Controversial Opinion: Mixins usually suck
+---------------------------------------------------
+
+.. note::
+  Question for audience: does everybody know what a mixin is? in python?
+
+  (If not: A mixin is a class designed not to be used by itself, but by
+  inheriting from it to add some behavior to your class.  Get more behavior by
+  inheriting from more mixins.  In some languages eg. Ruby, this means
+  something a bit more formal, but in python it's just an informal idea
+  of, here's a class you can inherit from if you want its behavior.)
+
 
 ----
 
@@ -456,11 +570,11 @@ BUT mixins are bad...
 ------------------------
 
 - multiple inheritance gone bananas.
-- easy to assemble lego-style iff you understand the classes
+- easy to *assemble* lego-style iff you understand the classes
   and how they interact.
+- very hard to *understand* if you don't.
 - internal interactions get VERY complex
-- very hard to understand if you don't.
-- very hard to debug a concrete class made by someone else, or by yourself last month
+- hard to debug a concrete class made by someone else, or by yourself last month
 - python 2 does not give us many tools to talk about contracts, so you really have to read every line to understand what the implicit contract is. What can I mix this into?
 
 ----
@@ -472,6 +586,22 @@ Some characteristics of nice mixins:
 
 - does one thing, or only a couple very closely related things
 - unlikely to need to use it polymorphically / override its methods
+
+----
+
+Possibly Controversial Opinion #2: "Template Method" pattern sucks
+----------------------------------------------------------------------
+
+
+TODO: Why it sucks?
+Because it ties reuse very tightly to the inheritance tree and is very hard
+to refactor away from that tree.
+Because as that tree grows, you don't have a yo-yo problem anymore, you have a
+pinball problem:
+
+TODO can't find decent pinball gif
+maybe convert this somehow??
+https://vine.co/v/M2vKeePb2TQ
 
 ----
 
@@ -552,6 +682,8 @@ and/or yet more classes:
 
 Back to the backstory...
 =========================
+
+TODO rewrite this to match slides!!
 
 Audience Analysis:
 
