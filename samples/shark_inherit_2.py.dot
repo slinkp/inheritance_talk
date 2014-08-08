@@ -1,26 +1,26 @@
 digraph "classes_No_Name" {
 charset="utf-8"
 rankdir=BT
-"2" [shape="record", label="OrcaWithLasers"];
-"3" [shape="record", label="Orca"];
-"4" [shape="record", label="Animal"];
-"5" [shape="record", label="LaserMixin"];
-"6" [shape="record", label="Weapon"];
-"7" [shape="record", label="Shark"];
-"8" [shape="record", label="OrcaWithNunchucks"];
-"9" [shape="record", label="NunchuckMixin"];
-"10" [shape="record", label="SharkWithLasers"];
-"11" [shape="record", label="SharkWithNunchucks"];
-"2" -> "3" [arrowtail="none", arrowhead="empty"];
-"2" -> "5" [arrowtail="none", arrowhead="empty"];
-"3" -> "4" [arrowtail="none", arrowhead="empty"];
-"5" -> "6" [arrowtail="none", arrowhead="empty"];
-"7" -> "4" [arrowtail="none", arrowhead="empty"];
-"8" -> "3" [arrowtail="none", arrowhead="empty"];
-"8" -> "9" [arrowtail="none", arrowhead="empty"];
-"9" -> "6" [arrowtail="none", arrowhead="empty"];
-"10" -> "7" [arrowtail="none", arrowhead="empty"];
-"10" -> "5" [arrowtail="none", arrowhead="empty"];
-"11" -> "7" [arrowtail="none", arrowhead="empty"];
-"11" -> "9" [arrowtail="none", arrowhead="empty"];
+"2" [label="OrcaWithLasers", shape="record"];
+"3" [label="Orca", shape="record"];
+"4" [label="Animal", shape="record"];
+"5" [label="LaserMixin", shape="record"];
+"6" [label="Weapon", shape="record"];
+"7" [label="Shark", shape="record"];
+"8" [label="OrcaWithNunchucks", shape="record"];
+"9" [label="NunchuckMixin", shape="record"];
+"10" [label="SharkWithLasers", shape="record"];
+"11" [label="SharkWithNunchucks", shape="record"];
+"2" -> "3" [arrowhead="empty", arrowtail="none"];
+"2" -> "5" [arrowhead="empty", arrowtail="none"];
+"3" -> "4" [arrowhead="empty", arrowtail="none"];
+"5" -> "6" [arrowhead="empty", arrowtail="none"];
+"7" -> "4" [arrowhead="empty", arrowtail="none"];
+"8" -> "3" [arrowhead="empty", arrowtail="none"];
+"8" -> "9" [arrowhead="empty", arrowtail="none"];
+"9" -> "6" [arrowhead="empty", arrowtail="none"];
+"10" -> "7" [arrowhead="empty", arrowtail="none"];
+"10" -> "5" [arrowhead="empty", arrowtail="none"];
+"11" -> "7" [arrowhead="empty", arrowtail="none"];
+"11" -> "9" [arrowhead="empty", arrowtail="none"];
 }

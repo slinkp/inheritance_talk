@@ -1,20 +1,20 @@
 digraph "classes_No_Name" {
 charset="utf-8"
 rankdir=BT
-"2" [shape="record", label="OrcaWithLasers"];
-"3" [shape="record", label="Orca"];
-"4" [shape="record", label="LaserMixin"];
-"5" [shape="record", label="Shark"];
-"6" [shape="record", label="OrcaWithNunchucks"];
-"7" [shape="record", label="NunchuckMixin"];
-"8" [shape="record", label="SharkWithLasers"];
-"9" [shape="record", label="SharkWithNunchucks"];
-"2" -> "3" [arrowtail="none", arrowhead="empty"];
-"2" -> "4" [arrowtail="none", arrowhead="empty"];
-"6" -> "3" [arrowtail="none", arrowhead="empty"];
-"6" -> "7" [arrowtail="none", arrowhead="empty"];
-"8" -> "5" [arrowtail="none", arrowhead="empty"];
-"8" -> "4" [arrowtail="none", arrowhead="empty"];
-"9" -> "5" [arrowtail="none", arrowhead="empty"];
-"9" -> "7" [arrowtail="none", arrowhead="empty"];
+"2" [label="OrcaWithLasers", shape="record"];
+"3" [label="Orca", shape="record"];
+"4" [label="LaserMixin", shape="record"];
+"5" [label="Shark", shape="record"];
+"6" [label="OrcaWithNunchucks", shape="record"];
+"7" [label="NunchuckMixin", shape="record"];
+"8" [label="SharkWithLasers", shape="record"];
+"9" [label="SharkWithNunchucks", shape="record"];
+"2" -> "3" [arrowhead="empty", arrowtail="none"];
+"2" -> "4" [arrowhead="empty", arrowtail="none"];
+"6" -> "3" [arrowhead="empty", arrowtail="none"];
+"6" -> "7" [arrowhead="empty", arrowtail="none"];
+"8" -> "5" [arrowhead="empty", arrowtail="none"];
+"8" -> "4" [arrowhead="empty", arrowtail="none"];
+"9" -> "5" [arrowhead="empty", arrowtail="none"];
+"9" -> "7" [arrowhead="empty", arrowtail="none"];
 }
