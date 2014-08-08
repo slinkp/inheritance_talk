@@ -16,7 +16,13 @@ Fighting Entropy like Sisyphus!
 Paul Winkler
 @percolate
 
-revised for PyGotham NYC 2014
+revised for PyGotham 2014
+
+.. note::
+
+  TODO introduce myself
+
+  TODO percolate logos
 
 ----
 
@@ -35,11 +41,13 @@ TODO: kitten gif attribution
 
 ----
 
-Intro: Who is this for?
-=======================
+Intro: What is this talk and who is it for?
+===========================================
 
 
 .. note::
+
+  A bit about this talk.
 
   There's some fairly beginner-level OO design tips here.
   Some of you know all of this. Some of you know more than me about all of
@@ -92,7 +100,7 @@ Thesis: Emergent design doesn't always emerge
 "We must imagine Sisyphus happy"
 ==================================
 
- .. image:: http://thisconjecture.files.wordpress.com/2014/02/whsyh0b.gif
+ .. image:: static/whsyh0b.gif
     :width: 500px
 
 .. note::
@@ -279,9 +287,6 @@ Your client just wants a freakin' shark with lasers.
 
 .. image:: static/shark-stealing-a-camera-lasers_01.jpg
    :width: 400px
-
-.. .. image:: static/f2eb_shark_w_frickin_laser_pointer.jpg
-..   :width: 400px
 
 ----
 
@@ -758,3 +763,6 @@ References / Inspiration / Shamelessly Stolen
 
 * "Composability Through Multiple Inheritance" - opposing view, also PyCon 2013. https://us.pycon.org/2013/schedule/presentation/110/
 
+* Cats-on-a-slide gif: found at
+  http://thisconjecture.com/2014/02/15/the-myth-of-sisyphus-a-touch-of-silly-and-a-great-animation-of-the-story/
+  original provenance unclear.
