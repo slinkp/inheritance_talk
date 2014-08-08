@@ -1,19 +1,18 @@
 digraph "classes_No_Name" {
 charset="utf-8"
 rankdir=BT
-"2" [shape="record", label="HotContent"];
-"3" [shape="record", label="BaseStoryApi"];
-"4" [shape="record", label="BaseHandler"];
+"11" [shape="record", label="FruitsView", style = filled, fillcolor = yellow];
+"8" [shape="record", label="VeggiesView", style = filled, fillcolor = yellow];
+"2" [shape="record", label="TofuView", style = filled, fillcolor = yellow];
+"3" [shape="record", label="LegumeViewBase", style = filled, fillcolor = aquamarine];
+"4" [shape="record", label="ViewBase"];
 "5" [shape="record", label="ArgumentMixin"];
-"6" [shape="record", label="RequestHandler"];
-"7" [shape="record", label="AudienceAnalysisBaseHandler"];
-"8" [shape="record", label="TopDomainsHandler"];
-"9" [shape="record", label="InsightHandlerBase"];
-"10" [shape="record", label="ApiMixin"];
-"11" [shape="record", label="TopicsHandler"];
-"12" [shape="record", label="RecentContent"];
-"13" [shape="record", label="ClickatronProxy"];
-"2" -> "3" [arrowtail="none", arrowhead="empty"];
+"6" [shape="record", label="RequestView"];
+"7" [shape="record", label="ProteinViewBase", style = filled, fillcolor = aquamarine];
+"9" [shape="record", label="ProduceViewBase", style = filled, fillcolor = aquamarine];
+"10" [shape="record", label="ProduceDBMixin", style = filled, fillcolor = wheat];
+"12" [shape="record", label="CheeseView", style = filled, fillcolor = yellow];
+"13" [shape="record", label="FoodMetadataDBMixin", style = filled, fillcolor = wheat];
 "2" -> "7" [arrowtail="none", arrowhead="empty"];
 "3" -> "4" [arrowtail="none", arrowhead="empty"];
 "4" -> "5" [arrowtail="none", arrowhead="empty"];
@@ -26,4 +25,5 @@ rankdir=BT
 "11" -> "9" [arrowtail="none", arrowhead="empty"];
 "12" -> "7" [arrowtail="none", arrowhead="empty"];
 "12" -> "13" [arrowtail="none", arrowhead="empty"];
+"2" -> "3" [arrowtail="none", arrowhead="empty"];
 }

@@ -1,21 +1,21 @@
 digraph "classes_No_Name" {
 charset="utf-8"
 rankdir=BT
-"2" [shape="record", label="ClickRateFetcher"];
-"3" [shape="record", label="BaseHandler"];
+"2" [shape="record", label="ConsumptionRateFetcher", style = filled, fillcolor = aquamarine, color = blue, penwidth=3];
+"3" [shape="record", label="ViewBase"];
 "4" [shape="record", label="ArgumentMixin"];
-"5" [shape="record", label="RequestHandler"];
-"6" [shape="record", label="HotContent"];
-"7" [shape="record", label="BaseStoryApi"];
-"8" [shape="record", label="AudienceAnalysisBaseHandler"];
-"9" [shape="record", label="ContentMetadataMixin"];
-"10" [shape="record", label="ClickatronProxy"];
-"11" [shape="record", label="TopDomainsHandler"];
-"12" [shape="record", label="InsightHandlerBase"];
-"13" [shape="record", label="ApiMixin"];
-"14" [shape="record", label="ListPinnedContent"];
-"15" [shape="record", label="TopicsHandler"];
-"16" [shape="record", label="RecentContent"];
+"5" [shape="record", label="RequestView"];
+"6" [shape="record", label="TofuView", style = filled, fillcolor = yellow];
+"7" [shape="record", label="LegumeViewBase", style = filled, fillcolor = aquamarine];
+"8" [shape="record", label="ProteinViewBase", style = filled, fillcolor = aquamarine];
+"9" [shape="record", label="ProteinMetadataMixin", style = filled, fillcolor = aquamarine, color = blue, penwidth=3];
+"10" [shape="record", label="FoodMetadataDBMixin", style = filled, fillcolor = wheat];
+"12" [shape="record", label="ProduceViewBase", style = filled, fillcolor = aquamarine];
+"13" [shape="record", label="ProduceDBMixin", style = filled, fillcolor = wheat];
+"14" [shape="record", label="SalmonView", style = filled, color = blue, penwidth=3, fillcolor = yellow];
+"15" [shape="record", label="FruitsView", style = filled, fillcolor = yellow];
+"11" [shape="record", label="VeggiesView", style = filled, fillcolor = yellow];
+"16" [shape="record", label="CheeseView", style = filled, fillcolor = yellow];
 "2" -> "3" [arrowtail="none", arrowhead="empty"];
 "3" -> "4" [arrowtail="none", arrowhead="empty"];
 "3" -> "5" [arrowtail="none", arrowhead="empty"];
