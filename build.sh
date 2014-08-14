@@ -41,3 +41,7 @@ mv samples/*svg static/
 # Build the slides.
 safe hovercraft slides.rst html/
 echo Output is in $PWD/html/
+
+echo Serving  \(ctrl-C to exit\)
+cd $PWD/html/
+python -m SimpleHTTPServer
