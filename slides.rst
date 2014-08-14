@@ -65,12 +65,23 @@ Intro: What is this talk and who is it for?
   inheritance?  (Javascript, PHP)?
 
   Anybody who learned Python *specifically* so they could do Django?
-  (TODO: get back to this latter - what I think is significant about that)
+  The interesting thing about that for my purposes is that I've noticed
+  it's possible to do quite a bit of productive work in Django without
+  ever doing much OO design. Which is actually pretty cool. But it
+  might leave you wondering what all this OO design fuss is about.
 
 ----
 
 Thesis: Emergent design doesn't always emerge
 ===============================================
+
+1. Build the simplest thing possible
+
+2. Refactor
+
+3. Repeat
+
+4. Profit? Disaster?
 
 .. note::
 
@@ -103,12 +114,13 @@ Thesis: Emergent design doesn't always emerge
  .. image:: static/whsyh0b.gif
     :width: 500px
 
+
+(this title is from Camus)
+
 .. note::
 
   Hence, Sisyphus. We are never going to be done pushing the design rock up the
   hill. Or the kitten up the slide.
-
-(this title is from Camus)
 
 ----
 
@@ -119,6 +131,10 @@ Try to enjoy it!
 
 from http://existentialcomics.com/comic/29
 
+.. note::
+
+  If that doesn't appeal to you, you might be in the wrong line of work...
+  or need an attitude change.  Savor the little victories. Always be learning.
 
 ----
 
@@ -130,6 +146,8 @@ For today, focusing on overuse of inheritance.
 .. note::
 
   This talk could go on forever so I'm picking on my favorite target.
+  Inheritance. Or more specifically, overuse of inheritance for things
+  that can be done more flexibly and more simply in other ways.
 
 ----
 
@@ -146,79 +164,7 @@ Overuse is easy to do without intention.
 
 We all do it, let's think about it and stop.
 
-
 ----
-
-A story
-============
-
-Recently I was working on some rest API endpoints for my employer.
-
-Needed to add an endpoint, and reuse some existing behavior.
-
-There was already an inheritance hierarchy in place.
-
-Solution: Factored out methods into two new shared base classes
-(used as mixins).
-
-.. note::
-
-   should this come AFTER the shark stuff?
-
-----
-
-Problem solved! Go home.
-========================
-
-.. image:: static/problem_solved.gif
-   :width: 800px
-
-----
-
-I started with this...
-
-.. image:: static/aa_start.dot.svg
-   :width: 800px
-
-----
-
-I ended up with this...
-
-.. image:: static/aa_final.dot.svg
-   :width: 800px
-
-.. note:: TODO: maybe show an alternate design where we have-a fetcher
-   instead of is-a fetcher?
-   And gradually do that to the whole graph?
-
-----
-
-.. image:: static/tweet.png
-
-https://twitter.com/slinkp23/status/382568693466935296
-
-
-----
-
-
-Confession
-===============
-
-Hi, my name is Paul, and I'm a recovering Zope 2 programmer.
-
-Perhaps this makes me overly sensitive?
-
-
-----
-
-.. image:: static/classes_ofs_item.dot.svg
-
-So I should know better.
-
-(*part* of the inheritance tree of the ironically named SimpleItem)
-
-----
-
 
 A "Worst Practice": Incremental Non-Design
 -------------------------------------------
@@ -227,6 +173,8 @@ Default OO design: big inheritance chain.
 (Single or multiple.)
 
 Default refactoring:  Make moar base classes!
+
+Default design pattern: Template Method
 
 Result: Big complex inheritance graph grows and grows.
 
@@ -237,16 +185,20 @@ It's not just me.
 Why is this bad? And what should we do instead?
 ------------------------------------------------
 
-----
+Hint: "Favor Composition Over Inheritance"
 
+.. note::
 
-"Favor Composition Over Inheritance"
-------------------------------------
+  I'm going to show a simple contrived example, and then a real-world example
+  of the kinds of problems I'm talking about.
 
-"Has-a" or "Uses-a" relationships, instead of "Is-a".
+  I'm going to show you why they're problems.
 
-Underlying principle in "Design Patterns" (aka the "Gang of Four" book)
+  I'm going to show you an alternative you may have heard of.
+  How many people have heard the phrase "Favor composition over
+  inheritance"?  How many have not?
 
+  TODO: I'm going to walk you through actually doing it.
 
 ----
 
@@ -306,7 +258,19 @@ Quick and Easy...
 
 ----
 
+Problem solved! Go home.
+========================
+
 This is easy, right?
+
+.. image:: static/problem_solved.gif
+   :width: 800px
+
+.. note::
+
+   TODO: possible to restart the animation when we hit this page??
+
+----
 
 But now we want an orca with nunchaku.
 
@@ -361,7 +325,7 @@ Class explosion.
 
 Every concept we add makes more and more classes.
 
-But even if we never do, it's already bad, because...
+But even if we stop here forever, it's already bad, because...
 
 ----
 
@@ -443,18 +407,21 @@ Okay, easy in that example.
 
 Not so much when there are dozens of classes.
 
+.. note::
+
+  Imagine that:
+
+  - you don't have the diagram, just code.
+
+  - methods are overriden in various places throughout this graph
+
+
 ----
 
 :data-y: r3000
 :data-x: r0
 
-Imagine that:
-
-- you don't have the diagram, just code.
-
-- methods are overriden in various places throughout this graph
-
-- Who is "self"?
+Who is "self"?
 
 .. note::
 
@@ -488,7 +455,7 @@ But it's still bad.
 Poor Separation of Concerns
 =============================
 
-ArmoredSharkWithLasers will have methods related to sharks, lasers, and armor.
+`ArmoredSharkWithLasers` will have methods related to sharks, lasers, and armor.
 
 Those are not conceptually related at all.
 
@@ -499,6 +466,91 @@ More classes + more methods = more yo-yo
 
 :data-y: r-6000
 :data-x: r2000
+
+
+"Favor Composition Over Inheritance"
+------------------------------------
+
+"Has-a" or "Uses-a" relationships, instead of "Is-a".
+
+Underlying principle in "Design Patterns" (aka "Gang of Four" book)
+
+.. note::
+
+  Now we get back to this phrase we mentioned before.
+
+----
+
+Composition: Usually Better
+------------------------------
+
+.. code:: python
+
+
+    class Shark(object):
+        def __init__(self, weapon):
+            self.weapon = weapon
+
+        def eat(self, target):
+            print "chomp! delicious %s" % target
+
+        def attack(self, target):
+            self.weapon.attack(target)
+            self.eat(target)
+
+    shark_with_laser = Shark(weapon=Laser())
+
+
+----
+
+Better: Fewer Classes
+---------------------
+
+.. image:: static/shark_composition_3.py.dot.svg
+
+
+----
+
+Better:  Separation of Concerns
+---------------------------------------------------------
+
+- "self.weapon" namespace is a nice bundling of related functionality
+
+----
+
+Better: Less Yo-yo Problem
+--------------------------------------
+
+.. code:: python
+
+        def attack(self, target):
+            self.weapon.attack(target)
+            #    ^^^^^^  A clue!
+            self.eat(target)
+            # Still have to look, but the tree is smaller.
+
+
+.. note::
+
+  - If needed, one-line wrapper methods can be added to Shark or a subclass, and these internally are nice and explicit. (Be mindful of the "law of demeter")
+
+----
+
+Better: More flexible too
+----------------------------
+
+These would have been hard to do without special case hacks
+and/or yet more classes:
+ 
+.. code:: python
+
+    mystery_shark = Shark(
+        weapon=get_random_weapon())
+
+    armed_to_the_teeth = Shark(
+        weapon=WeaponCollection(Lasers(), Grenades()))
+
+----
 
 
 But that's all contrived!
@@ -530,6 +582,75 @@ Yes, it's a bad made-up design that nobody would ever do.
 .. ----
 
 
+A real-world story
+====================
+
+* Existing REST API
+
+* Needed to add an endpoint
+
+* New endpoint needed to reuse behavior
+
+* Existing API was built as a class hierarchy
+
+.. note::
+
+  One day I was working on some rest API endpoints at my job.
+
+
+----
+
+I started with this...
+
+.. image:: static/aa_start.dot.svg
+   :width: 800px
+
+.. note::
+
+   Names of classes changed to protect the innocent. But this was
+   generated from a real system.
+
+
+----
+
+Solution: Factored out methods into two new shared base classes
+(used as mixins).
+
+.. image:: static/aa_final.dot.svg
+   :width: 1000px
+
+.. note:: TODO: maybe show an alternate design where we have-a fetcher
+   instead of is-a fetcher?
+   And gradually do that to the whole graph?
+
+----
+
+.. image:: static/tweet.png
+
+https://twitter.com/slinkp23/status/382568693466935296
+
+
+----
+
+
+Confession
+===============
+
+Hi, my name is Paul, and I'm a recovering Zope 2 programmer.
+
+Perhaps this makes me overly sensitive?
+
+
+----
+
+.. image:: static/classes_ofs_item.dot.svg
+
+So I should know better.
+
+(*part* of the inheritance tree of the ironically named SimpleItem)
+
+----
+
 None of this is news.  Why do we all still overuse inheritance?
 ---------------------------------------------------------------
 
@@ -542,6 +663,65 @@ None of this is news.  Why do we all still overuse inheritance?
 - Alternatives may not be as intuitive or obvious.
 
 - Once you pop, you can't stop
+
+----
+
+Back to the backstory...
+=========================
+
+TODO rewrite this to match slides!!
+
+Audience Analysis:
+
+Two different views / handlers need to show click rates.
+
+ - I would prefer them to *have* a ClickRateFetcher, not *be* a
+   ClickRateFetcher, since that's orthogonal to serving a request.
+
+ - but I need to get the info from an external service...
+
+ - access to this service is already provided via ClickServiceProxy
+   which depends on being mixed in to the view.
+
+----
+
+Choices:
+
+   1. write my a new click service client that isn't a mixin (ugh)
+
+   2. or, the ClickRateFetcher and the Handler can refer to and call each other
+
+   3. or suck it up and put the ClickRateFetcher in the inheritance graph
+
+
+----
+
+When I run out of time, I do the easiest thing - just inherit.
+
+Remember the title of this talk?
+
+Incremental Non-Design.
+
+----
+
+Untangling is hard
+===================
+
+Why does the ClickServiceProxy need to *be* a request handler anyway?
+
+Maybe it doesn't.  Or shouldn't.
+
+But it calls various methods and properties of other base Handler classes, so
+there's a lot of inertia.
+
+.. note::
+
+  So existing inheritance hierarchy tends to encourage more inheritance,
+  because it's easier than puzzling out how to do without it.
+
+  Next time I'll try the reference (option 2).
+
+  TODO: DO THE DARN THING
 
 ----
 
@@ -610,141 +790,7 @@ https://vine.co/v/M2vKeePb2TQ
 
 ----
 
-"Favor Composition Over Inheritance" again
-
-----
-
-Composition: Usually Better
-------------------------------
-
-.. code:: python
-
-
-    class Shark(object):
-        def __init__(self, weapon):
-            self.weapon = weapon
-
-        def eat(self, target):
-            print "chomp! delicious %s" % target
-
-        def attack(self, target):
-            self.weapon.attack(target)
-            self.eat(target)
-
-    shark_with_laser = Shark(weapon=Laser())
-
-
-----
-
-Better: Fewer Classes
----------------------
-
-.. image:: static/shark_composition_3.py.dot.svg
-
-
-----
-
-Better:  Separation of Concerns
----------------------------------------------------------
-
-- "self.weapon" namespace is a nice bundling of related functionality
-
-----
-
-Better: Less Yo-yo Problem
---------------------------------------
-
-.. code:: python
-
-        def attack(self, target):
-            self.weapon.attack(target)
-            #    ^^^^^^  A clue!
-            self.eat(target)
-            # Still have to look, but the tree is smaller.
-
-
-.. note::
-
-  - If needed, one-line wrapper methods can be added to Shark or a subclass, and these internally are nice and explicit. (Be mindful of the "law of demeter")
-
-----
-
-Better: More expressive too
-----------------------------
-
-These would have been hard to do without special case hacks
-and/or yet more classes:
- 
-.. code:: python
-
-    mystery_shark = Shark(
-        weapon=get_random_weapon_somehow())
-
-    armed_to_the_teeth = Shark(
-        weapon=WeaponCollection(Lasers(), Grenades()))
-
-----
-
-Back to the backstory...
-=========================
-
-TODO rewrite this to match slides!!
-
-Audience Analysis:
-
-Two different views / handlers need to show click rates.
-
- - I would prefer them to *have* a ClickRateFetcher, not *be* a
-   ClickRateFetcher, since that's orthogonal to serving a request.
-
- - but I need to get the info from an external service...
-
- - access to this service is already provided via ClickServiceProxy
-   which depends on being mixed in to the view.
-
-----
-
-Choices:
-
-   1. write my a new click service client that isn't a mixin (ugh)
-
-   2. or, the ClickRateFetcher and the Handler can refer to and call each other
-
-   3. or suck it up and put the ClickRateFetcher in the inheritance graph
-
-
-----
-
-When I run out of time, I do the easiest thing - just inherit.
-
-Remember the title of this talk?
-
-Incremental Non-Design.
-
-----
-
-Untangling is hard
-===================
-
-Why does the ClickServiceProxy need to *be* a request handler anyway?
-
-Maybe it doesn't.  Or shouldn't.
-
-But it calls various methods and properties of other base Handler classes, so
-there's a lot of inertia.
-
-.. note::
-
-  So existing inheritance hierarchy tends to encourage more inheritance,
-  because it's easier than puzzling out how to do without it.
-
-  Next time I'll try the reference (option 2).
-
-
-----
-
-
-Discussion? Q&A?
+Questions?
 =================
 
 References / Inspiration / Shamelessly Stolen
@@ -766,3 +812,5 @@ References / Inspiration / Shamelessly Stolen
 * Cats-on-a-slide gif: found at
   http://thisconjecture.com/2014/02/15/the-myth-of-sisyphus-a-touch-of-silly-and-a-great-animation-of-the-story/
   original provenance unclear.
+
+* TODO: Design Patterns Explained
