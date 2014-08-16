@@ -20,60 +20,68 @@ revised for PyGotham 2014
 
 .. note::
 
-  TODO introduce myself
+  Hi. I'm Paul Winkler and I'm here to talk about object-oriented software
+  design.
+
+  I work here in NY at Percolate, there are a bunch of us here today
+  and yes we are hiring... we have a booth, come talk to us if you're
+  looking for work.  We're a PyGotham gold sponsor as well!
 
   TODO percolate logos
 
-----
-
-Dumping Ground
-=======================
-
-Eclipse plugin that does automatically replace inheritance -> comp or
-delegation: http://www.fernuni-hagen.de/ps/prjs/RIWD/
-
-Tools:
-
- pylint (pyreverse)
- graphviz (dot)
-
-TODO: kitten gif attribution
 
 ----
 
 Intro: What is this talk and who is it for?
 ===========================================
 
+* how things accidentally get worse
+
+* one basic principle of design
+
+* the process of refactoring
+
 
 .. note::
 
   A bit about this talk.
 
-  There's some fairly beginner-level OO design tips here.
+  There's some fairly beginner-level OO design tips here;
+  there's also some waxing philosophical so I hope the more experienced
+  people won't be bored.
+
+  I'm going to talk about:  (see slide)
+
   Some of you know all of this. Some of you know more than me about all of
-  this.  Some of you may disagree with me about this.  Some of you have
-  probably never heard any of this and may learn something. Wanted to share
-  my observations and opinions and hopefully all of us (including me) will learn
-  something.
+  this.  Some of you may disagree with me about this. I wanted to share my
+  experiences and opinions and hopefully all of us (including me) will learn
+  something. Some of you may know none of this and are waiting for me to
+  explain what the hell I'm talking about.
+
+  First, to get a sense of who's here today - show of hands:
 
   Who here would call themselves pretty experienced at OO design?
 
-  Who here is just starting at OO design?
+  Who here is just starting at OO programming or design?
 
   Out of curiosity, anybody here who came to Python after starting out in
-  languages that aren't, or at least aren't commonly, done with classes and
-  inheritance?  (Javascript, PHP)?
+  languages that aren't, or at least aren't typically, programmed using classes
+  and inheritance?  (eg. Javascript, PHP)?
 
-  Anybody who learned Python *specifically* so they could do Django?
-  The interesting thing about that for my purposes is that I've noticed
+  Anybody who learned Python *specifically* so they could do Django or Flask?
+
+  (The interesting thing about that for my purposes is that I've noticed
   it's possible to do quite a bit of productive work in Django without
   ever doing much OO design. Which is actually pretty cool. But it
-  might leave you wondering what all this OO design fuss is about.
+  might leave you wondering what all this OO design fuss is about.)
 
 ----
 
-Thesis: Emergent design doesn't always emerge
-===============================================
+Background: Emergent Design
+============================
+
+In agile processes, we often avoid prolonged design.
+Instead:
 
 1. Build the simplest thing possible
 
@@ -81,30 +89,48 @@ Thesis: Emergent design doesn't always emerge
 
 3. Repeat
 
-4. Profit? Disaster?
+Result: Always the simplest design possible!
 
 .. note::
 
-  Back story: Most software I've worked on is developed using some agile
-  approach and deployed on the web on a frequent basis. There are no big
+  In my career: Most software I've worked on is developed using some agile
+  approach and deployed on the web frequently. There are no big
   releases, just a constant stream of improvements.
 
-  How many people work in similar situations?
+  Q: How many people work in similar situations?
 
   In this world, it's taken as gospel truth that the old big-design-up-front
-  approaches such as the justly maligned "waterfall" process aren't worth
-  it. Instead we have embraced the object oriented best practice mantra:
-  refactor constantly. Do the simplest thing and always be improving your
-  design and all will be well.
+  approaches are bad because you don't know enough up front to predict
+  *what* you need to design, so you waste time *and* you design the wrong
+  thing.  I believe this is largely true, though I reject the extreme of
+  thinking you should start without doing any preliminary design work at all.
+
+  Instead we have embraced as a best practice the mantra: refactor
+  constantly. Do the simplest thing and always be improving your design and all
+  will be well.
+
+----
+
+Thesis: Emergent design doesn't always emerge
+===============================================
+
+Result: Big ball of mud!
+
+.. image:: http://media.trb.com/media/photo/2012-10/73033205.jpg
+
+(source: CBS via Baltimore Sun)
+
+.. note::
 
   Unfortunately, I'm going to argue, we often do a poor job of this.  And a
-  good design fails to emerge.  What emerges instead is often very messy.  And
-  this happens not through any particularly bad decision but through a series
-  of decisions that in isolation make good sense but taken together add up to
-  an overly complex software design.
+  good design fails to emerge.  What emerges instead is often very messy.  The
+  proverbial "Big Ball of Mud" design. And this happens not through any one bad
+  decision but through a series of decisions that in isolation make good sense,
+  but taken together add up to an overly complex software design.
 
-  And I'm going to say up front that I don't have a grand solution here.
+  And I'm going to say up front that there's no grand solution here.
   The solution is vigilance and being aware of the pitfalls.
+
 
 ----
 
@@ -120,7 +146,8 @@ Thesis: Emergent design doesn't always emerge
 .. note::
 
   Hence, Sisyphus. We are never going to be done pushing the design rock up the
-  hill. Or the kitten up the slide.
+  hill. Or the kitten up the slide.  Eternal vigilance is the price of, not
+  just liberty, but also agile design.
 
 ----
 
@@ -160,9 +187,11 @@ Powerful!
 Inheritance, overused, is bad design with real negative consequences.
 
 Overuse is easy to do without intention.
-(In fact, almost inevitable.)
+(almost inevitable?)
 
 We all do it, let's think about it and stop.
+
+XXX TODO 2-class graph
 
 ----
 
@@ -180,7 +209,57 @@ Result: Big complex inheritance graph grows and grows.
 
 It's not just me.
 
+.. note::
+
+  Things we do by default as we incrementally improve a system.
+  These are all often highly expedient and often make things worse.
+
 ----
+
+
+Confession
+===============
+
+Hi, my name is Paul, and I'm a recovering Zope 2 programmer.
+
+Perhaps this makes me overly sensitive?
+
+.. note::
+
+   Zope, for the young folks in the audience, was a web development
+   framework that was very big in the Python world around 10-15 years
+   ago. Internally it used multiple inheritance very very heavily,
+   so when you wanted to write extensions for it, you had to inherit from
+   everything on the planet and override various methods.
+
+----
+
+Zope 2 in a nutshell:
+
+.. image:: static/classes_ofs_item.dot.svg
+
+.. note::
+
+   *part* of the inheritance tree of the ironically named SimpleItem.
+
+   Nearly everything you did in Zope 2 involved inheriting from this class.
+   There were a bunch of other classes that didn't make it into this graph
+   because of some magic that confused the inspection tool I was using.
+
+----
+
+.. image:: static/tweet.png
+
+https://twitter.com/slinkp23/status/382568693466935296
+
+.. note::
+
+   So, people with my history are typically very suspicious of big inheritance
+   graphs. Not coincidentally, the guy that replied to me is also a recovering
+   Zope 2 programmer.
+
+----
+
 
 Why is this bad? And what should we do instead?
 ------------------------------------------------
@@ -625,34 +704,10 @@ Solution: Factored out methods into two new shared base classes
 
 ----
 
-.. image:: static/tweet.png
-
-https://twitter.com/slinkp23/status/382568693466935296
-
-
-----
-
-
-Confession
-===============
-
-Hi, my name is Paul, and I'm a recovering Zope 2 programmer.
-
-Perhaps this makes me overly sensitive?
-
-
-----
-
-.. image:: static/classes_ofs_item.dot.svg
-
-So I should know better.
-
-(*part* of the inheritance tree of the ironically named SimpleItem)
-
-----
-
 None of this is news.  Why do we all still overuse inheritance?
 ---------------------------------------------------------------
+
+TODO is this slide wholly redundant?
 
 - OO 101: Falls out of any language with inheritance
 
@@ -814,3 +869,16 @@ References / Inspiration / Shamelessly Stolen
   original provenance unclear.
 
 * TODO: Design Patterns Explained
+
+----
+
+Dumping Ground
+=======================
+
+Eclipse plugin that does automatically replace inheritance -> comp or
+delegation: http://www.fernuni-hagen.de/ps/prjs/RIWD/
+
+Tools:
+
+ pylint (pyreverse)
+ graphviz (dot)
