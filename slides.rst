@@ -1,6 +1,6 @@
 :css: static/style.css
 
-:data-transition-duration: 1500
+:data-transition-duration: 600
 
 .. title:: incremental non-design
 
