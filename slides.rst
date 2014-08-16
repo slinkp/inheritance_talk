@@ -195,17 +195,18 @@ XXX TODO 2-class graph
 
 ----
 
-A "Worst Practice": Incremental Non-Design
--------------------------------------------
+Failure to Emerge → Incremental Non-Design
+-----------------------------------------------
 
-Default OO design: big inheritance chain.
-(Single or multiple.)
+Bad defaults:
 
-Default refactoring:  Make moar base classes!
+* Default design: big inheritance chain.
 
-Default design pattern: Template Method
+* Default refactoring:  moar base classes!
 
-Result: Big complex inheritance graph grows and grows.
+* Default design pattern: Template Method
+
+Result: Big inheritance graph grows forever.
 
 It's not just me.
 
@@ -261,10 +262,12 @@ https://twitter.com/slinkp23/status/382568693466935296
 ----
 
 
-Why is this bad? And what should we do instead?
-------------------------------------------------
+Why is too much inheritance bad?
+--------------------------------
 
-Hint: "Favor Composition Over Inheritance"
+And what should we do instead?
+
+*Hint: "Favor Composition Over Inheritance"*
 
 .. note::
 
@@ -278,15 +281,6 @@ Hint: "Favor Composition Over Inheritance"
   inheritance"?  How many have not?
 
   TODO: I'm going to walk you through actually doing it.
-
-----
-
-BUT WHY?
-========
-
-.. note::
-
-   What's bad about inheritance and what's good about composition?
 
 ----
 
@@ -351,7 +345,19 @@ This is easy, right?
 
 ----
 
-But now we want an orca with nunchaku.
+New Requirement
+================
+
+
+.. image:: static/icon_28978/icon_28978.svg
+   :width: 400px
+
+.. image:: static/icon_22936/icon_22936.svg
+   :width: 150px
+
+.. note::
+
+   But now we want an orca with nunchaku.
 
 ----
 
@@ -360,15 +366,18 @@ But now we want an orca with nunchaku.
 
 ----
 
-Hmm, there's some commonalities we can factor into
-base classes...
+Factor out commonalities into more base classes...
 
 .. image:: static/shark_inherit_2.py.dot.svg
    :width: 1000px
 
 ----
 
-And now we want to allow them to wear armor.
+Another requirement!
+====================
+
+.. image:: static/armor.jpg
+   :height: 500px
 
 ----
 
@@ -432,18 +441,22 @@ https://en.wikipedia.org/wiki/Yo-yo_problem
 
   With inheritance, when you look at a method call, the place where
   that method is defined is implicit.
-  Same with attribute assignments.
+
   If you want to know where it's defined, you have to go hunting for it.
   When self.foo() calls self.bar() calls self.baz() calls self.fleem()
-  and each of those could be defined in any or all of 20 inherited classes,
+  and each of those could be defined in any or all of 12 classes,
   you find yourself bouncing up and down through the inheritance tree
   looking for these method definitions. If any are overridden,
   you have to also reconstruct Python's method resolution order
   in your head, or find a tool to do it for you.
-  Put another way: when you see "self", you don't know if it currently
-  means a shark, or a base Animal, or a thing with lasers, or a base
-  Weapon, or a thing with armor?  You have to look all over, with only
-  the names to give you clues.
+
+
+  State - instance state, typically attribute assignments - is even worse,
+  because it can happen on literally any line. So you have to grep and and then
+  trace upward to see if you're in a relevant method.
+
+  Multiple inheritance makes it even more fun - it's not like being a yo-yo,
+  it's like being a pinball and bouncing all over the place.
 
 ----
 
@@ -452,8 +465,6 @@ https://en.wikipedia.org/wiki/Yo-yo_problem
 
 Yo-yo problem larval stage
 ===========================
-
-It starts innocuously enough...
 
 .. code:: python
 
@@ -465,6 +476,15 @@ It starts innocuously enough...
 
 Where are shoot() and eat() defined?
 -------------------------------------
+
+.. note::
+
+  It starts innocuously enough...
+
+  When you see "self", you don't know if it currently means a shark, or a base
+  Animal, or a thing with lasers, or a base Weapon, or a thing with armor?  You
+  have to look all over, with only the names to give you clues.
+
 
 ----
 
@@ -486,15 +506,6 @@ Okay, easy in that example.
 
 Not so much when there are dozens of classes.
 
-.. note::
-
-  Imagine that:
-
-  - you don't have the diagram, just code.
-
-  - methods are overriden in various places throughout this graph
-
-
 ----
 
 :data-y: r3000
@@ -504,27 +515,12 @@ Who is "self"?
 
 .. note::
 
-  It's interesting to ask yourself in each method definition,
+  Put another way: It's interesting to ask yourself in each method definition,
   what kind of object do I mean when I say "self"?
-  Implicitly it could rely on any combination of behaviors or states
-  supported by any of the base classes.
 
+  Implicitly it could rely on any combination of behaviors or states supported
+  by any of the base classes.
 
-----
-
-:data-y: r-4000
-:data-x: r0
-
-
-Single inheritance is somewhat easier...
-========================================
-
-.. note::
-
-  Your poor brain only has to bounce up and down in the class chain,
-  not all over a class graph.
-
-But it's still bad.
 
 ----
 
@@ -686,8 +682,8 @@ I started with this...
 
 .. note::
 
-   Names of classes changed to protect the innocent. But this was
-   generated from a real system.
+   Names of classes changed to protect the innocent. But this
+   was generated from real code from a real production system.
 
 
 ----
@@ -704,72 +700,48 @@ Solution: Factored out methods into two new shared base classes
 
 ----
 
-None of this is news.  Why do we all still overuse inheritance?
----------------------------------------------------------------
+If you only do the easiest thing ...
 
-TODO is this slide wholly redundant?
+And don't refactor...
 
-- OO 101: Falls out of any language with inheritance
+If you don't improve the design as you go...
 
-- D.R.Y. encourages quick easy refactoring
+That's incremental non-design.
 
-- Easiest path to reuse: Add more base classes!
+.. image:: static/mud_car.jpg
+   :height: 500px
+
+----
+
+None of this is news.  Why do we still do it?
+----------------------------------------------
+
+- OO 101: Over-inheritance falls out of any language with inheritance
+
+- Easiest path to D.R.Y.: Add more base classes!
 
 - Alternatives may not be as intuitive or obvious.
 
 - Once you pop, you can't stop
 
-----
 
-Back to the story...
-=========================
+.. note::
 
-TODO rewrite this to match slides!!
-
-Audience Analysis:
-
-Two different views / handlers need to show click rates.
-
- - I would prefer them to *have* a ClickRateFetcher, not *be* a
-   ClickRateFetcher, since that's orthogonal to serving a request.
-
- - but I need to get the info from an external service...
-
- - access to this service is already provided via ClickServiceProxy
-   which depends on being mixed in to the view.
-
-----
-
-Choices:
-
-   1. the ClickRateFetcher and the Handler can refer to and call each other
-      (2-way references) ... breaks the inheritance dependency, but
-      not much cleaner.
-
-   2. write a new click service client that isn't a mixin and doesn't know
-      about the Handler at all.  Harder.  (#1 is a good transitional step)
-
-   3. or suck it up and leave the ClickRateFetcher in the inheritance graph
+   We continue to overuse inheritance because it's a path of very low
+   resistance.  And once we have an existing system that uses inheritance,
+   it's very difficult - perhaps prohibitively so - to stop doing that.
 
 
 ----
 
-When I run out of time, I do the easiest thing - just inherit.
+Getting out of the mud is hard
+=================================
 
-Remember the title of this talk?
-
-Incremental Non-Design.
-
-----
-
-Untangling is hard
-===================
-
-Why does the ClickServiceProxy need to *be* a request handler anyway?
+Why does the ProteinMetadata class need to *be* a request handler anyway?
 
 Maybe it doesn't.  Or shouldn't.
 
-But it calls various methods and properties of other base Handler classes, so
+But it calls various methods and properties inherited from other classes, so
 there's a lot of inertia.
 
 .. note::
@@ -778,16 +750,58 @@ there's a lot of inertia.
   because it's easier than puzzling out how to do without it.
   This is what I meant by "once you pop, you can't stop."
 
-  Next time I'll try the reference (option 2).
+----
+
+Alternative design
+=========================
+
+Two different views need to show consumption rates.
+
+ - I would prefer them to *use* a FoodMetadataDB instance, not *be* a
+   FoodMetadataDB, since that's orthogonal to serving a request.
+
+ - but I need to get the info from an external service...
+
+ - access to this service is already provided via ProteinMetadataMixin
+   which depends on being mixed in to the view.
+
+----
+
+Choices:
+
+   1. the ProteinMetadata object and the View can refer to and call each other
+      (2-way references) ... breaks the inheritance dependency, but
+      not much cleaner.
+
+   2. write a new protein metadata class that doesn't know
+      about the View at all.  Harder.  (#1 is a good transitional step)
+
+   3. or suck it up and leave the ProteinMetadataMixin in the inheritance
+      graph
+
+
+.. note::
 
   TODO: DO THE DARN THING
 
 ----
 
-Possibly Controversial Opinion: Mixins usually suck
----------------------------------------------------
+END
+=================
+
+Questions?
+
+For more (references and some more rambling):
+
+TODO link to this talk
+
+----
+
+Appendix 1: Mixins usually suck
+=================================
 
 .. note::
+
   Question for audience: does everybody know what a mixin is? in python?
 
   (If not: A mixin is a class designed not to be used by itself, but by
@@ -802,9 +816,9 @@ Possibly Controversial Opinion: Mixins usually suck
 Mixins are good...
 --------------------
 
-- mixins are good because each base class does one thing
-- reuse is easy - just inherit from the relevant class
-- different combinations of these base classes to give different combinations
+- Mixins are good when each mixin does one thing
+- Reuse is easy - just inherit from the relevant class
+- Different combinations of these base classes to give different combinations
   of behavior.
 
 ----
@@ -818,7 +832,9 @@ BUT mixins are bad...
 - very hard to *understand* if you don't.
 - internal interactions get VERY complex
 - hard to debug a concrete class made by someone else, or by yourself last month
-- python 2 does not give us many tools to talk about contracts, so you really have to read every line to understand what the implicit contract is. What can I mix this into?
+- python 2 does not give us many tools to talk about contracts, so you really
+  have to read every line to understand what the implicit contract is. What can
+  I mix this into? What do I have to do?
 
 ----
 
@@ -832,12 +848,10 @@ Some characteristics of nice mixins:
 
 ----
 
-Possibly Controversial Opinion #2: "Template Method" pattern sucks
-----------------------------------------------------------------------
+Appendix 2: "Template Method" Pattern Sucks
+-------------------------------------------
 
-TODO: Why it sucks?
-
-Symptom: reuse is tied very tightly to the inheritance tree and is very hard to
+Symptom: Reuse is tied very tightly to the inheritance tree and is very hard to
 refactor away from that tree.
 
 Symptom: As that tree grows, you don't have a yo-yo problem anymore, you have a
@@ -847,15 +861,29 @@ TODO can't find decent pinball gif
 maybe convert this somehow??
 https://vine.co/v/M2vKeePb2TQ
 
-Good simple example: unittest.TestCase.
-The setUp() and tearDown() are expected to be overridden.
-Good because:
-* Shallow inheritance - you often just inherit TestCase directly and done
-* Optional - you can omit either/both
-* Few hooks - only two!
-* No state to worry about (except whatever *you* add)
+----
 
-So template method is certainly not *bad*, it's useful and good.
+Good use of Template Method
+===============================
+
+Simple example that does *not* suck: `unittest.TestCase`.
+The `setUp()` and `tearDown()` are expected to be overridden.
+
+Good because:
+
+* Shallow inheritance - you often just inherit `TestCase` directly and done
+* Few hooks - only two!
+* Optional - you can omit either/both hooks
+* No inherited state to worry about - only what *you* add.
+
+.. note::
+  So template method is certainly not *inherently bad*, it's useful and good.
+
+----
+
+Smells
+=======
+
 Some code smells to watch out for:
 
 - Lots of hooks: hard to remember / understand
@@ -868,8 +896,6 @@ Some code smells to watch out for:
 
 ----
 
-Questions?
-=================
 
 References / Inspiration / Shamelessly Stolen
 ---------------------------------------------
@@ -892,6 +918,15 @@ References / Inspiration / Shamelessly Stolen
   original provenance unclear.
 
 * TODO: Design Patterns Explained
+
+Orca designed by <a href="http://www.thenounproject.com/sarahjean">Sarah-Jean</a> from the <a href="http://www.thenounproject.com">Noun Project</a>
+
+Nunchucks designed by Simon Henrotte (public domain)
+
+Armor from http://infothread.org/Weapons+and+Military/Armor-Uniform-Insignia/
+
+Car in mud from
+http://www.motoringexposure.com/20228/friday-fail-soccer-players-get-stuck-mud
 
 ----
 
