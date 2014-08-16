@@ -721,7 +721,7 @@ TODO is this slide wholly redundant?
 
 ----
 
-Back to the backstory...
+Back to the story...
 =========================
 
 TODO rewrite this to match slides!!
@@ -742,11 +742,14 @@ Two different views / handlers need to show click rates.
 
 Choices:
 
-   1. write my a new click service client that isn't a mixin (ugh)
+   1. the ClickRateFetcher and the Handler can refer to and call each other
+      (2-way references) ... breaks the inheritance dependency, but
+      not much cleaner.
 
-   2. or, the ClickRateFetcher and the Handler can refer to and call each other
+   2. write a new click service client that isn't a mixin and doesn't know
+      about the Handler at all.  Harder.  (#1 is a good transitional step)
 
-   3. or suck it up and put the ClickRateFetcher in the inheritance graph
+   3. or suck it up and leave the ClickRateFetcher in the inheritance graph
 
 
 ----
@@ -773,6 +776,7 @@ there's a lot of inertia.
 
   So existing inheritance hierarchy tends to encourage more inheritance,
   because it's easier than puzzling out how to do without it.
+  This is what I meant by "once you pop, you can't stop."
 
   Next time I'll try the reference (option 2).
 
@@ -799,10 +803,9 @@ Mixins are good...
 --------------------
 
 - mixins are good because each base class does one thing
-- convenient because you can combine these base classes to get
-  different combinations of behavior.
-
-
+- reuse is easy - just inherit from the relevant class
+- different combinations of these base classes to give different combinations
+  of behavior.
 
 ----
 
@@ -832,16 +835,36 @@ Some characteristics of nice mixins:
 Possibly Controversial Opinion #2: "Template Method" pattern sucks
 ----------------------------------------------------------------------
 
-
 TODO: Why it sucks?
-Because it ties reuse very tightly to the inheritance tree and is very hard
-to refactor away from that tree.
-Because as that tree grows, you don't have a yo-yo problem anymore, you have a
+
+Symptom: reuse is tied very tightly to the inheritance tree and is very hard to
+refactor away from that tree.
+
+Symptom: As that tree grows, you don't have a yo-yo problem anymore, you have a
 pinball problem:
 
 TODO can't find decent pinball gif
 maybe convert this somehow??
 https://vine.co/v/M2vKeePb2TQ
+
+Good simple example: unittest.TestCase.
+The setUp() and tearDown() are expected to be overridden.
+Good because:
+* Shallow inheritance - you often just inherit TestCase directly and done
+* Optional - you can omit either/both
+* Few hooks - only two!
+* No state to worry about (except whatever *you* add)
+
+So template method is certainly not *bad*, it's useful and good.
+Some code smells to watch out for:
+
+- Lots of hooks: hard to remember / understand
+- Order of operations is not obvious from hook names
+- Base class implementations depend on state ...
+  that means there's more implicit contract than just method calls
+  in some order, you also have to understand and maintain that state.
+- Many base classes. Especially if you're inheriting from more than one
+  Template Method-style base class with different sets of hooks - RUN AWAY
 
 ----
 
