@@ -191,8 +191,6 @@ Overuse is easy to do without intention.
 
 We all do it, let's think about it and stop.
 
-XXX TODO 2-class graph
-
 ----
 
 Failure to Emerge → Incremental Non-Design
@@ -200,7 +198,7 @@ Failure to Emerge → Incremental Non-Design
 
 Bad defaults:
 
-* Default design: big inheritance chain.
+* Default design: big inheritance graph.
 
 * Default refactoring:  moar base classes!
 
@@ -752,37 +750,177 @@ there's a lot of inertia.
 
 ----
 
-Alternative design
-=========================
+Example: Refactoring Shark with Armor
+======================================
 
-Two different views need to show consumption rates.
-
- - I would prefer them to *use* a FoodMetadataDB instance, not *be* a
-   FoodMetadataDB, since that's orthogonal to serving a request.
-
- - but I need to get the info from an external service...
-
- - access to this service is already provided via ProteinMetadataMixin
-   which depends on being mixed in to the view.
+Remember that we had `SharkWithArmor(ArmorMixin, Shark)`.
+Let's look at how that might have been implemented, and how we might
+do it differently.
 
 ----
 
-Choices:
+Shark with Armor: Inheritance
+=============================
 
-   1. the ProteinMetadata object and the View can refer to and call each other
-      (2-way references) ... breaks the inheritance dependency, but
-      not much cleaner.
+.. code:: python
 
-   2. write a new protein metadata class that doesn't know
-      about the View at all.  Harder.  (#1 is a good transitional step)
+    class Shark(Animal):
 
-   3. or suck it up and leave the ProteinMetadataMixin in the inheritance
-      graph
+        def receive_hit(self, damage):
+            self.health -= damage
+            if self.health <= 0:
+                self.die()
+    
+    class ArmorMixin(object):
 
+        def receive_hit(self, damage):
+            self.armor_health -= damage
+            if self.armor_health < 0:
+                super(ArmorMixin, self).receive_hit(-self.armor_health)
+                self.armor_health = 0
+    
+    class SharkWithArmor(ArmorMixin, Shark):
+        pass
 
 .. note::
 
-  TODO: DO THE DARN THING
+   One nice thing about this design: the `Shark` class knows nothing about
+   armor. ALl you have to do is put the base classes of `SharkWithArmor`
+   in the right order, and `self.receive_hit` will do the right thing.
+
+   One not so nice thing: Depends on super().receive_hit()
+
+----
+
+Better Armor: Proxy object
+============================
+
+.. code:: python
+
+   class Armored(object):
+       def __init__(self, wearer):
+           self.wearer = wearer
+
+        def receive_hit(self, damage):
+            self.armor_health -= damage
+            if self.armor_health < 0:
+                self.wearer.receive_hit(-self.armor_health)
+                self.armor_health = 0
+
+        def __getattr__(self, name):
+            # Or explicitly proxy all others if desired.
+        n    return getattr(self.wearer, name)
+
+    shark_with_armor = Armored(wearer=Shark())
+
+.. note::
+
+   This might look a little backwards at first. The armor *has* the wearer,
+   rather than the wearer *having* the armor.
+
+   This is so we can maintain the nice property we had before, where the
+   Shark class doesn't have to know about armor.  *Nothing* knows about the
+   armor except the armor itself... and the invocation that constructs it.
+
+----
+
+Better Laser: Delegation
+==========================
+
+Shark *has* and *uses* laser, rather than *is* laser.
+
+.. code:: python
+
+    class Shark(object):
+
+        ...
+
+        def attack(self, target):
+            self.weapon.attack(target)
+            self.eat(target)
+
+    shark_with_laser = Shark(weapon=Laser())
+
+**How do we get here**?
+
+.. note::
+
+   Earlier we suggested that this was a better design for sharks with lasers.
+   How do we get from the inheritance-based code to this delegation-based
+   code? When there's a huge pile of other classes in the tree and we
+   want to do it gradually?
+
+
+----
+
+Tests before refactoring!
+===========================
+
+Precondition. Cannot skip.
+
+.. note::
+
+  You need solid test coverage. If you don't have it, do that first.  Filling
+  out your test suite and getting decent coverage is more important to the
+  success of your project than redoing your design. You could add tests and
+  never redo the design and you'd be a hell of a lot better off than when you
+  started.
+
+----
+
+TODO flesh this out in a git repo and link to it.
+
+starting point:
+- basic implementations of all/most of the classes
+- tests
+- add some state
+- add some other methods (eg. distance_to_target)
+- override some methods in subclasses
+
+then:
+
+- factor out armor as above
+- factor out laser
+  - 2-way references, starting with both as `self`
+  - replace state with params
+  - remove one of the references
+
+Show some of these steps as slides?
+
+
+..
+   ----
+
+..
+   Alternative real-world design
+   =========================
+
+   Two different views need to show consumption rates.
+
+    - I would prefer them to *use* a FoodMetadataDB instance, not *be* a
+      FoodMetadataDB, since that's orthogonal to serving a request.
+
+    - but I need to get the info from an external service...
+
+    - access to this service is already provided via ProteinMetadataMixin
+      which depends on being mixed in to the view.
+
+..
+   ----
+
+   Choices:
+
+      1. the ProteinMetadata object and the View can refer to and call each other
+         (2-way references) ... breaks the inheritance dependency, but
+         not much cleaner.
+
+      2. write a new protein metadata class that doesn't know
+         about the View at all.  Harder.  (#1 is a good transitional step)
+
+      3. or suck it up and leave the ProteinMetadataMixin in the inheritance
+         graph
+
+     TODO: DO THE DARN THING
 
 ----
 
@@ -936,7 +1074,7 @@ Dumping Ground
 Eclipse plugin that does automatically replace inheritance -> comp or
 delegation: http://www.fernuni-hagen.de/ps/prjs/RIWD/
 
-Tools:
+Tools for this talk:
 
  pylint (pyreverse)
  graphviz (dot)
