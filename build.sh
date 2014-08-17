@@ -40,6 +40,9 @@ mv samples/*svg static/
 
 # Build the slides.
 safe hovercraft slides.rst html/
+# Doesn't seem to include my css?
+cp -f static/*css $PWD/html/
+
 echo Output is in $PWD/html/
 
 echo Serving  \(ctrl-C to exit\)
