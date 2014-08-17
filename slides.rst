@@ -214,35 +214,25 @@ It's not just me.
 
 ----
 
-
-Confession
-===============
-
-Hi, my name is Paul, and I'm a recovering Zope 2 programmer.
-
-Perhaps this makes me overly sensitive?
-
-.. note::
-
-   Zope, for the young folks in the audience, was a web development
-   framework that was very big in the Python world around 10-15 years
-   ago. Internally it used multiple inheritance very very heavily,
-   so when you wanted to write extensions for it, you had to inherit from
-   everything on the planet and override various methods.
-
-----
-
 Zope 2 in a nutshell:
 
 .. image:: static/classes_ofs_item.dot.svg
 
 .. note::
 
-   *part* of the inheritance tree of the ironically named SimpleItem.
+   Confession: Hi, my name is Paul, and I'm a recovering Zope 2 programmer.
 
+   Perhaps this makes me overly sensitive?
+
+   Zope, for the young folks in the audience, was a web development
+   framework that was very big in the Python world around 10-15 years
+   ago. Internally it used multiple inheritance very very heavily.
+
+   Here's *part* of the inheritance tree of the ironically named SimpleItem.
    Nearly everything you did in Zope 2 involved inheriting from this class.
-   There were a bunch of other classes that didn't make it into this graph
-   because of some magic that confused the inspection tool I was using.
+
+   Easy things were usually easy. The hard things it made convenient were
+   easy. Anything else was rough going.
 
 ----
 
@@ -253,8 +243,8 @@ https://twitter.com/slinkp23/status/382568693466935296
 .. note::
 
    So, people with my history are typically very suspicious of big inheritance
-   graphs. Not coincidentally, the guy that replied to me is also a recovering
-   Zope 2 programmer.
+   graphs. Not coincidentally, the guy that replied to this tweet of mine
+   is also a recovering Zope 2 programmer.
 
 ----
 
