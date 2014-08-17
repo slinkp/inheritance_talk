@@ -13,8 +13,9 @@ Fighting Entropy like Sisyphus!
  ..
     .. image:: static/cute-collapsing-towers-animation.gif 
 
-Paul Winkler
-@percolate
+.. image:: static/percolate_logo.png
+
+paul.winkler@percolate.com
 
 revised for PyGotham 2014
 
@@ -28,8 +29,6 @@ revised for PyGotham 2014
   We're a PyGotham gold sponsor as well!
   we have a booth in the food area, come talk to us if you're looking
   for work or just curious what we do.
-
-  TODO percolate logos
 
 
 ----
