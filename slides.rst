@@ -36,7 +36,7 @@ revised for PyGotham 2014
 Intro: What is this talk?
 ===========================================
 
-* how things accidentally get worse over time
+* Entropy: how things accidentally get worse over time
 
 * one basic principle of design: *favor composition over inheritance*
 
@@ -110,7 +110,7 @@ Thesis: Emergent design doesn't always emerge
 
 Result: Big ball of mud!
 
-.. image:: http://media.trb.com/media/photo/2012-10/73033205.jpg
+.. image:: static/ball_of_mud.jpg
 
 *(source: CBS via Baltimore Sun)*
 
