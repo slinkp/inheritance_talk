@@ -120,14 +120,13 @@ Result: Big ball of mud!
 .. note::
 
   Unfortunately, I'm going to argue, we often do a poor job of this.  And a
-  good design fails to emerge.  What emerges instead is often very messy.  The
-  proverbial "Big Ball of Mud" design. And this happens not through any one bad
-  decision but through a series of decisions that in isolation make good sense,
-  but taken together add up to an overly complex software design.
+  good design fails to emerge.  Instead, we often get the proverbial "Big Ball
+  of Mud" design. And this happens not through any one bad decision but through
+  a series of decisions that in isolation make good sense, but taken together
+  add up to an overly complex software design.
 
   And I'm going to say up front that there's no grand solution here.
   The solution is vigilance and being aware of the pitfalls.
-
 
 ----
 
@@ -203,6 +202,8 @@ Bad defaults:
 
 * Default design pattern: Template Method
 
+Hard to untangle once started.
+
 Result: Big inheritance graph grows forever.
 
 It's not just me.
@@ -211,6 +212,19 @@ It's not just me.
 
   Things we do by default as we incrementally improve a system.
   These are all often highly expedient and often make things worse.
+
+  OO 101: Over-inheritance falls out of any language with inheritance.
+
+  Easiest path to D.R.Y.: Add more base classes!
+
+  Alternatives may not be as intuitive or obvious.
+
+
+   We continue to overuse inheritance because it's a path of very low
+   resistance.  And once we have an existing system that uses inheritance,
+   it's very difficult - perhaps prohibitively so - to stop doing that.
+   Once you pop, you can't stop!
+
 
 ----
 
@@ -252,22 +266,20 @@ https://twitter.com/slinkp23/status/382568693466935296
 Why is too much inheritance bad?
 --------------------------------
 
-And what should we do instead?
-
-*Hint: "Favor Composition Over Inheritance"*
-
 .. note::
 
-  I'm going to show a simple contrived example, and then a real-world example
+  I'm going to show a simple contrived example, and a real-world example
   of the kinds of problems I'm talking about.
 
   I'm going to show you why they're problems.
+
+  And what should we do instead?
 
   I'm going to show you an alternative you may have heard of.
   How many people have heard the phrase "Favor composition over
   inheritance"?  How many have not?
 
-  I'm going to walk you through actually doing it.
+  I'm going to briefly walk you through actually doing it.
 
 ----
 
@@ -288,10 +300,8 @@ Let's explain these by example.
 
 ----
 
-Contrived Example:
-------------------
-
-Your client just wants a freakin' shark with lasers.
+Contrived Example: Requirements
+---------------------------------
 
 .. code:: python
 
@@ -299,6 +309,11 @@ Your client just wants a freakin' shark with lasers.
 
 .. image:: static/shark-stealing-a-camera-lasers_01.jpg
    :width: 400px
+
+.. note::
+
+  Your client just wants a freakin' shark with lasers.
+
 
 ----
 
@@ -522,12 +537,15 @@ More classes + more methods = more yo-yo
 
 ----
 
-:data-y: r-6000
+:data-y: r0
 :data-x: r2000
+
 
 
 "Favor Composition Over Inheritance"
 ------------------------------------
+
+
 
 "Has-a" or "Uses-a" relationships, instead of "Is-a".
 
@@ -658,7 +676,7 @@ A real-world story
 
 ----
 
-I started with this...
+Started with...
 
 .. image:: static/aa_start.dot.svg
    :width: 800px
@@ -671,76 +689,65 @@ I started with this...
 
 ----
 
-Solution: Factored out methods into two new shared base classes
-(used as mixins).
+:id: center1
+
+Solution...
 
 .. image:: static/aa_final.dot.svg
    :width: 1000px
 
-----
-
-If you only do the easiest thing ...
-
-And don't refactor...
-
-If you don't improve the design as you go...
-
-That's incremental non-design.
-
-.. image:: static/mud_car.jpg
-   :height: 400px
-
-----
-
-None of this is news.  Why do we still do it?
-----------------------------------------------
-
-- OO 101: Over-inheritance falls out of any language with inheritance
-
-- Easiest path to D.R.Y.: Add more base classes!
-
-- Alternatives may not be as intuitive or obvious.
-
-- Once you pop, you can't stop
-
-
 .. note::
 
-   We continue to overuse inheritance because it's a path of very low
-   resistance.  And once we have an existing system that uses inheritance,
-   it's very difficult - perhaps prohibitively so - to stop doing that.
+     Existing inheritance hierarchy tends to encourage more inheritance,
+     because it's easier than puzzling out how to do without it.
+     This is what I meant by "once you pop, you can't stop."
 
-
-----
-
-Getting out of the mud is hard
-=================================
-
-Why does the ProteinMetadata class need to *be* a request handler anyway?
-
-Maybe it doesn't.  Or shouldn't.
-
-But it calls various methods and properties inherited from other classes, so
-there's a lot of inertia.
-
-.. note::
-
-  So existing inheritance hierarchy tends to encourage more inheritance,
-  because it's easier than puzzling out how to do without it.
-  This is what I meant by "once you pop, you can't stop."
+     Here I factored out methods I needed to re-use into two new base
+     classes.
 
 ----
 
-Example: Refactoring Shark with Armor
+..
+   If you only do the easiest thing ...
+
+   And don't refactor...
+
+   If you don't improve the design as you go...
+
+   That's incremental non-design.
+
+   .. image:: static/mud_car.jpg
+      :height: 400px
+
+   ----
+
+..
+   Getting out of the mud is hard
+   =================================
+
+   Why does the ProteinMetadata class need to *be* a request handler anyway?
+
+   Maybe it doesn't.  Or shouldn't.
+
+   But it calls various methods and properties inherited from other classes, so
+   there's a lot of inertia.
+
+   .. note::
+
+     So existing inheritance hierarchy tends to encourage more inheritance,
+     because it's easier than puzzling out how to do without it.
+     This is what I meant by "once you pop, you can't stop."
+
+   ----
+
+Better solution!
 ======================================
 
-Remember that we had `SharkWithArmor(ArmorMixin, Shark)`.
-Let's look at how that might have been implemented, and how we might
-do it differently.
+Let's refactor SharkWithArmor!
 
 ----
 
-Shark with Armor: Inheritance
+Shark with Armor: Bad
 =============================
 
 .. code:: python
@@ -767,9 +774,11 @@ Shark with Armor: Inheritance
 
    One nice thing about this design: the `Shark` class knows nothing about
    armor. All you have to do is put the base classes of `SharkWithArmor`
-   in the right order, and `self.receive_hit` will do the right thing.
+   in the right order, and `receive_hit()` will do the right thing.
 
-   One not so nice thing: Depends on super().receive_hit()
+   One not so nice thing: Depends on super().receive_hit() and does
+   not have any base classes. Implicitly must be mixed into something that
+   provides that method. Not documented by code.
 
 ----
 
@@ -790,7 +799,7 @@ Better Armor: Proxy object
 
         def __getattr__(self, name):
             # Or explicitly proxy all others if desired.
-        n    return getattr(self.wearer, name)
+            return getattr(self.wearer, name)
 
     shark_with_armor = Armored(wearer=Shark())
 
@@ -853,42 +862,6 @@ https://github.com/slinkp/inheritance_talk_examples
 
 ----
 
-..
-   ----
-
-..
-   Alternative real-world design
-   =========================
-
-   Two different views need to show consumption rates.
-
-    - I would prefer them to *use* a FoodMetadataDB instance, not *be* a
-      FoodMetadataDB, since that's orthogonal to serving a request.
-
-    - but I need to get the info from an external service...
-
-    - access to this service is already provided via ProteinMetadataMixin
-      which depends on being mixed in to the view.
-
-..
-   ----
-
-   Choices:
-
-      1. the ProteinMetadata object and the View can refer to and call each other
-         (2-way references) ... breaks the inheritance dependency, but
-         not much cleaner.
-
-      2. write a new protein metadata class that doesn't know
-         about the View at all.  Harder.  (#1 is a good transitional step)
-
-      3. or suck it up and leave the ProteinMetadataMixin in the inheritance
-         graph
-
-     TODO: DO THE DARN THING
-
-----
-
 END
 =================
 
@@ -896,7 +869,58 @@ Questions?
 
 For more (references and some more rambling):
 
-TODO link to this talk
+https://bitly.com/bundles/slinkp/7
+
+----
+
+:id: ref1
+
+Appendix 1: References / Inspiration
+---------------------------------------------
+
+* "End of Object Inheritance" talk, PyCon 2013 - Video http://pyvideo.org/video/1684/
+
+* "API Design for Library Authors" - Chris McDonough's talk @ PyCon 2013
+
+  * Video http://pyvideo.org/video/1705/api-design-for-library-authors
+
+  * Slides https://speakerdeck.com/pyconslides/api-design-for-libraries-by-chris-mcdonough
+
+  * introduced me to "yoyo problem".
+
+* "Composability Through Multiple Inheritance" - opposing view, also PyCon 2013. https://us.pycon.org/2013/schedule/presentation/110/
+
+* "Design Patterns Explained" 2nd edition - Shalloway & Trott 2004
+
+----
+
+:id: ref2
+
+Image Credits
+-------------
+
+Cats-on-a-slide gif: found at http://thisconjecture.com/2014/02/15/the-myth-of-sisyphus-a-touch-of-silly-and-a-great-animation-of-the-story/ original provenance unclear.
+
+Orca designed by `Sarah-Jean <http://www.thenounproject.com/sarahjean>`_ from
+the `Noun Project <http://www.thenounproject.com>`_
+
+Nunchucks designed by Simon Henrotte (public domain)
+
+Armor from http://infothread.org/Weapons+and+Military/Armor-Uniform-Insignia/
+
+Car in mud from
+http://www.motoringexposure.com/20228/friday-fail-soccer-players-get-stuck-mud
+
+----
+
+:id: ref3
+
+Tools used for this talk
+========================
+
+* pylint (pyreverse)
+* graphviz (dot)
+* hovercraft and impress.js
 
 ----
 
@@ -958,11 +982,12 @@ Symptom: Reuse is tied very tightly to the inheritance tree and is very hard to
 refactor away from that tree.
 
 Symptom: As that tree grows, you don't have a yo-yo problem anymore, you have a
-pinball problem:
+pinball problem - bouncing all over the place.
 
-TODO can't find decent pinball gif
-maybe convert this somehow??
-https://vine.co/v/M2vKeePb2TQ
+..
+   TODO can't find decent pinball gif
+   maybe convert this somehow??
+   https://vine.co/v/M2vKeePb2TQ
 
 ----
 
@@ -974,9 +999,9 @@ The `setUp()` and `tearDown()` are expected to be overridden.
 
 Good because:
 
-* Shallow inheritance - you often just inherit `TestCase` directly and done
+* Shallow inheritance - you often just inherit `TestCase` directly and done.
 * Few hooks - only two!
-* Optional - you can omit either/both hooks
+* Optional - you can omit either/both hooks.
 * No inherited state to worry about - only what *you* add.
 
 .. note::
@@ -997,49 +1022,3 @@ Some code smells to watch out for:
 - Many base classes. Especially if you're inheriting from more than one
   Template Method-style base class with different sets of hooks - RUN AWAY
 
-----
-
-
-References / Inspiration / Shamelessly Stolen
----------------------------------------------
-
-* "End of Object Inheritance" talk, PyCon 2013
-  - Video http://pyvideo.org/video/1684/
-  - slides unfortunately not readable alone, really should watch it.
-
-
-* "API Design for Library Authors" - Chris McDonough's talk @ PyCon 2013
-  - Video http://pyvideo.org/video/1705/api-design-for-library-authors
-  - Slides https://speakerdeck.com/pyconslides/api-design-for-libraries-by-chris-mcdonough
-  - Relevant takeaway: Don't make your users inherit from your classes.
-  - introduced me to "yoyo problem".
-
-* "Composability Through Multiple Inheritance" - opposing view, also PyCon 2013. https://us.pycon.org/2013/schedule/presentation/110/
-
-* Cats-on-a-slide gif: found at
-  http://thisconjecture.com/2014/02/15/the-myth-of-sisyphus-a-touch-of-silly-and-a-great-animation-of-the-story/
-  original provenance unclear.
-
-* TODO: Design Patterns Explained
-
-Orca designed by <a href="http://www.thenounproject.com/sarahjean">Sarah-Jean</a> from the <a href="http://www.thenounproject.com">Noun Project</a>
-
-Nunchucks designed by Simon Henrotte (public domain)
-
-Armor from http://infothread.org/Weapons+and+Military/Armor-Uniform-Insignia/
-
-Car in mud from
-http://www.motoringexposure.com/20228/friday-fail-soccer-players-get-stuck-mud
-
-----
-
-Dumping Ground
-=======================
-
-Eclipse plugin that does automatically replace inheritance -> comp or
-delegation: http://www.fernuni-hagen.de/ps/prjs/RIWD/
-
-Tools for this talk:
-
- pylint (pyreverse)
- graphviz (dot)

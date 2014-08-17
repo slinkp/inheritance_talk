@@ -9,6 +9,16 @@ h1, h2, h3, h4, h5, {
     color: #332;
 }
 
+
+#ref1, #ref2, #ref3, #ref4, #ref5 {
+    font-size: 80%;
+}
+
+#center1, #center2, #center3, #center4, #center5 {
+    text-align: center;
+}
+
+
 .step {
    border: 1px solid #CCF;
    /* width: 1200px; */
