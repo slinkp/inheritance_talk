@@ -1,18 +1,22 @@
 class Animal(object):
     pass
 
+
 class Shark(Animal):
     pass
 
+
 class Weapon(object):
     pass
+
 
 class LaserMixin(Weapon):
     pass
 
 
-class SharkWithLasers(Shark, LaserMixin):
+class SharkWithLasers(LaserMixin, Shark):
     pass
+
 
 class Orca(Animal):
     pass
@@ -21,13 +25,16 @@ class Orca(Animal):
 class NunchuckMixin(Weapon):
     pass
 
-class OrcaWithNunchucks(Orca, NunchuckMixin):
+
+class OrcaWithNunchucks(NunchuckMixin, Orca):
     pass
 
-class SharkWithNunchucks(Shark, NunchuckMixin):
+
+class SharkWithNunchucks(NunchuckMixin, Shark):
     pass
 
-class OrcaWithLasers(Orca, LaserMixin):
+
+class OrcaWithLasers(LaserMixin, Orca):
     pass
 
 
@@ -35,15 +42,17 @@ class ArmorMixin(object):
     pass
 
 
-class ArmoredSharkWithLasers(SharkWithLasers, ArmorMixin):
+class ArmoredSharkWithLasers(ArmorMixin, SharkWithLasers):
     pass
 
-class ArmoredSharkWithNunchucks(SharkWithNunchucks, ArmorMixin):
+
+class ArmoredSharkWithNunchucks(ArmorMixin, SharkWithNunchucks):
     pass
 
-class ArmoredOrcaWithLasers(OrcaWithLasers, ArmorMixin):
+
+class ArmoredOrcaWithLasers(ArmorMixin, OrcaWithLasers):
     pass
 
-class ArmoredOrcaWithNunchucks(OrcaWithNunchucks, ArmorMixin):
-    pass
 
+class ArmoredOrcaWithNunchucks(ArmorMixin, OrcaWithNunchucks):
+    pass

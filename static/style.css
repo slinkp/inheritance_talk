@@ -9,3 +9,24 @@ h1, h2, h3, h4, h5, {
     color: #332;
 }
 
+.step {
+   border: 1px solid #CCF;
+   /* width: 1200px; */
+   /* text-align: center; */
+}
+
+
+.step .active, .step.present {
+  opacity: 1;
+}
+
+.step .past, .step. future {
+  margin: 0;
+  opacity: 0.3;
+  -webkit-transition: opacity 1s;
+  -moz-transition: opacity 1s;
+  -ms-transition: opacity 1s;
+  -o-transition: opacity 1s;
+  transition: opacity 1s;
+}
+

@@ -1,6 +1,6 @@
 :css: static/style.css
 
-:data-transition-duration: 600
+:data-transition-duration: 700
 
 .. title:: incremental non-design
 
@@ -37,7 +37,7 @@ Intro: What is this talk and who is it for?
 
 * how things accidentally get worse
 
-* one basic principle of design
+* one basic principle of design: *favor composition over inheritance*
 
 * the process of refactoring
 
@@ -148,6 +148,8 @@ Result: Big ball of mud!
   Hence, Sisyphus. We are never going to be done pushing the design rock up the
   hill. Or the kitten up the slide.  Eternal vigilance is the price of, not
   just liberty, but also agile design.
+
+  Disclaimer: I have not read Camus. I can use the google.
 
 ----
 
@@ -278,7 +280,7 @@ And what should we do instead?
   How many people have heard the phrase "Favor composition over
   inheritance"?  How many have not?
 
-  TODO: I'm going to walk you through actually doing it.
+  I'm going to walk you through actually doing it.
 
 ----
 
@@ -337,10 +339,6 @@ This is easy, right?
 .. image:: static/problem_solved.gif
    :width: 800px
 
-.. note::
-
-   TODO: possible to restart the animation when we hit this page??
-
 ----
 
 New Requirement
@@ -388,7 +386,7 @@ Another requirement!
 
 :data-x: r0
 :data-y: 2500
-:data-z: 4000
+:data-z: 40000
 :data-rotate-x: 90
 :data-rotate-z: 90
 
@@ -692,10 +690,6 @@ Solution: Factored out methods into two new shared base classes
 .. image:: static/aa_final.dot.svg
    :width: 1000px
 
-.. note:: TODO: maybe show an alternate design where we have-a fetcher
-   instead of is-a fetcher?
-   And gradually do that to the whole graph?
-
 ----
 
 If you only do the easiest thing ...
@@ -707,7 +701,7 @@ If you don't improve the design as you go...
 That's incremental non-design.
 
 .. image:: static/mud_car.jpg
-   :height: 500px
+   :height: 400px
 
 ----
 
@@ -785,7 +779,7 @@ Shark with Armor: Inheritance
 .. note::
 
    One nice thing about this design: the `Shark` class knows nothing about
-   armor. ALl you have to do is put the base classes of `SharkWithArmor`
+   armor. All you have to do is put the base classes of `SharkWithArmor`
    in the right order, and `self.receive_hit` will do the right thing.
 
    One not so nice thing: Depends on super().receive_hit()
@@ -850,43 +844,27 @@ Shark *has* and *uses* laser, rather than *is* laser.
    code? When there's a huge pile of other classes in the tree and we
    want to do it gradually?
 
-
 ----
 
-Tests before refactoring!
-===========================
+Example refactoring of Sharks/Orcas/Nunchucks/Lasers:
 
-Precondition. Cannot skip.
+https://github.com/slinkp/inheritance_talk_examples
+
+**Important: Tests before refactoring!**
 
 .. note::
 
-  You need solid test coverage. If you don't have it, do that first.  Filling
-  out your test suite and getting decent coverage is more important to the
-  success of your project than redoing your design. You could add tests and
+  You need solid test coverage. If you don't have it, do that first.
+  This is mandatory.
+
+  Filling out your test suite and getting decent coverage is more important to
+  the success of your project than redoing your design. You could add tests and
   never redo the design and you'd be a hell of a lot better off than when you
   started.
 
+  The sample repo starts and ends with 100% line coverage.
+
 ----
-
-TODO flesh this out in a git repo and link to it.
-
-starting point:
-- basic implementations of all/most of the classes
-- tests
-- add some state
-- add some other methods (eg. distance_to_target)
-- override some methods in subclasses
-
-then:
-
-- factor out armor as above
-- factor out laser
-  - 2-way references, starting with both as `self`
-  - replace state with params
-  - remove one of the references
-
-Show some of these steps as slides?
-
 
 ..
    ----

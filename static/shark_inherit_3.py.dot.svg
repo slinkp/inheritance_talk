@@ -16,173 +16,173 @@
 </g>
 <!-- 3 -->
 <g id="node2" class="node"><title>3</title>
-<polygon fill="none" stroke="black" points="59,-75 59,-111 185,-111 185,-75 59,-75"/>
-<text text-anchor="middle" x="122" y="-89.4" font-family="Times Roman,serif" font-size="14.00">OrcaWithLasers</text>
+<polygon fill="none" stroke="black" points="378,-75 378,-111 474,-111 474,-75 378,-75"/>
+<text text-anchor="middle" x="426" y="-89.4" font-family="Times Roman,serif" font-size="14.00">ArmorMixin</text>
 </g>
 <!-- 2&#45;&gt;3 -->
 <g id="edge2" class="edge"><title>2&#45;&gt;3</title>
-<path fill="none" stroke="black" d="M99.4157,-37.2921C102.867,-45.8053 107.045,-56.1115 110.865,-65.5329"/>
-<polygon fill="none" stroke="black" points="107.669,-66.9659 114.67,-74.9183 114.156,-64.3359 107.669,-66.9659"/>
-</g>
-<!-- 8 -->
-<g id="node7" class="node"><title>8</title>
-<polygon fill="none" stroke="black" points="355,-75 355,-111 451,-111 451,-75 355,-75"/>
-<text text-anchor="middle" x="403" y="-89.4" font-family="Times Roman,serif" font-size="14.00">ArmorMixin</text>
-</g>
-<!-- 2&#45;&gt;8 -->
-<g id="edge4" class="edge"><title>2&#45;&gt;8</title>
-<path fill="none" stroke="black" d="M184.585,-36.5334C230.432,-45.8146 286.721,-58.1028 345.136,-73.8926"/>
-<polygon fill="none" stroke="black" points="344.341,-77.3037 354.91,-76.5623 346.186,-70.551 344.341,-77.3037"/>
+<path fill="none" stroke="black" d="M184.542,-36.7764C250.495,-49.5356 332.389,-65.5901 367.793,-73.9708"/>
+<polygon fill="none" stroke="black" points="367.376,-77.4743 377.926,-76.5029 369.073,-70.683 367.376,-77.4743"/>
 </g>
 <!-- 4 -->
 <g id="node3" class="node"><title>4</title>
-<polygon fill="none" stroke="black" points="336,-149 336,-185 390,-185 390,-149 336,-149"/>
-<text text-anchor="middle" x="363" y="-163.4" font-family="Times Roman,serif" font-size="14.00">Orca</text>
+<polygon fill="none" stroke="black" points="60,-75 60,-111 186,-111 186,-75 60,-75"/>
+<text text-anchor="middle" x="123" y="-89.4" font-family="Times Roman,serif" font-size="14.00">OrcaWithLasers</text>
 </g>
-<!-- 3&#45;&gt;4 -->
-<g id="edge6" class="edge"><title>3&#45;&gt;4</title>
-<path fill="none" stroke="black" d="M185.188,-109.899C241.91,-125.115 317.281,-145.474 324,-148 324.714,-148.268 325.432,-148.545 326.154,-148.829"/>
-<polygon fill="none" stroke="black" points="325.013,-152.148 335.585,-152.853 327.76,-145.709 325.013,-152.148"/>
-</g>
-<!-- 6 -->
-<g id="node5" class="node"><title>6</title>
-<polygon fill="none" stroke="black" points="224.5,-149 224.5,-185 315.5,-185 315.5,-149 224.5,-149"/>
-<text text-anchor="middle" x="270" y="-163.4" font-family="Times Roman,serif" font-size="14.00">LaserMixin</text>
-</g>
-<!-- 3&#45;&gt;6 -->
-<g id="edge8" class="edge"><title>3&#45;&gt;6</title>
-<path fill="none" stroke="black" d="M158.205,-111.102C178.258,-121.129 203.372,-133.686 224.714,-144.357"/>
-<polygon fill="none" stroke="black" points="223.403,-147.615 233.913,-148.956 226.534,-141.354 223.403,-147.615"/>
+<!-- 2&#45;&gt;4 -->
+<g id="edge4" class="edge"><title>2&#45;&gt;4</title>
+<path fill="none" stroke="black" d="M99.6629,-37.2921C103.229,-45.8053 107.547,-56.1115 111.493,-65.5329"/>
+<polygon fill="none" stroke="black" points="108.333,-67.0473 115.425,-74.9183 114.79,-64.3425 108.333,-67.0473"/>
 </g>
 <!-- 5 -->
 <g id="node4" class="node"><title>5</title>
-<polygon fill="none" stroke="black" points="367,-223 367,-259 431,-259 431,-223 367,-223"/>
-<text text-anchor="middle" x="399" y="-237.4" font-family="Times Roman,serif" font-size="14.00">Animal</text>
+<polygon fill="none" stroke="black" points="304.5,-149 304.5,-185 395.5,-185 395.5,-149 304.5,-149"/>
+<text text-anchor="middle" x="350" y="-163.4" font-family="Times Roman,serif" font-size="14.00">LaserMixin</text>
 </g>
 <!-- 4&#45;&gt;5 -->
-<g id="edge10" class="edge"><title>4&#45;&gt;5</title>
-<path fill="none" stroke="black" d="M371.899,-185.292C376.084,-193.895 381.16,-204.329 385.782,-213.83"/>
-<polygon fill="none" stroke="black" points="382.681,-215.457 390.203,-222.918 388.976,-212.395 382.681,-215.457"/>
+<g id="edge6" class="edge"><title>4&#45;&gt;5</title>
+<path fill="none" stroke="black" d="M181.205,-111.018C212.47,-120.81 251.887,-133.333 294.618,-147.574"/>
+<polygon fill="none" stroke="black" points="293.775,-150.983 304.369,-150.835 295.995,-144.344 293.775,-150.983"/>
 </g>
 <!-- 7 -->
 <g id="node6" class="node"><title>7</title>
-<polygon fill="none" stroke="black" points="273.5,-223 273.5,-259 346.5,-259 346.5,-223 273.5,-223"/>
-<text text-anchor="middle" x="310" y="-237.4" font-family="Times Roman,serif" font-size="14.00">Weapon</text>
+<polygon fill="none" stroke="black" points="233,-149 233,-185 287,-185 287,-149 233,-149"/>
+<text text-anchor="middle" x="260" y="-163.4" font-family="Times Roman,serif" font-size="14.00">Orca</text>
 </g>
-<!-- 6&#45;&gt;7 -->
-<g id="edge12" class="edge"><title>6&#45;&gt;7</title>
-<path fill="none" stroke="black" d="M279.888,-185.292C284.538,-193.895 290.178,-204.329 295.314,-213.83"/>
-<polygon fill="none" stroke="black" points="292.392,-215.786 300.226,-222.918 298.55,-212.457 292.392,-215.786"/>
+<!-- 4&#45;&gt;7 -->
+<g id="edge8" class="edge"><title>4&#45;&gt;7</title>
+<path fill="none" stroke="black" d="M156.514,-111.102C176.939,-122.135 203.038,-136.232 223.915,-147.509"/>
+<polygon fill="none" stroke="black" points="222.343,-150.638 232.805,-152.311 225.67,-144.479 222.343,-150.638"/>
+</g>
+<!-- 6 -->
+<g id="node5" class="node"><title>6</title>
+<polygon fill="none" stroke="black" points="375.5,-223 375.5,-259 448.5,-259 448.5,-223 375.5,-223"/>
+<text text-anchor="middle" x="412" y="-237.4" font-family="Times Roman,serif" font-size="14.00">Weapon</text>
+</g>
+<!-- 5&#45;&gt;6 -->
+<g id="edge10" class="edge"><title>5&#45;&gt;6</title>
+<path fill="none" stroke="black" d="M365.326,-185.292C372.834,-194.253 382.007,-205.201 390.227,-215.013"/>
+<polygon fill="none" stroke="black" points="387.745,-217.501 396.85,-222.918 393.111,-213.005 387.745,-217.501"/>
+</g>
+<!-- 8 -->
+<g id="node7" class="node"><title>8</title>
+<polygon fill="none" stroke="black" points="292,-223 292,-259 356,-259 356,-223 292,-223"/>
+<text text-anchor="middle" x="324" y="-237.4" font-family="Times Roman,serif" font-size="14.00">Animal</text>
+</g>
+<!-- 7&#45;&gt;8 -->
+<g id="edge12" class="edge"><title>7&#45;&gt;8</title>
+<path fill="none" stroke="black" d="M275.82,-185.292C283.648,-194.343 293.229,-205.421 301.779,-215.307"/>
+<polygon fill="none" stroke="black" points="299.173,-217.644 308.362,-222.918 304.467,-213.065 299.173,-217.644"/>
 </g>
 <!-- 9 -->
 <g id="node8" class="node"><title>9</title>
-<polygon fill="none" stroke="black" points="407.5,-149 407.5,-185 464.5,-185 464.5,-149 407.5,-149"/>
-<text text-anchor="middle" x="436" y="-163.4" font-family="Times Roman,serif" font-size="14.00">Shark</text>
+<polygon fill="none" stroke="black" points="552.5,-149 552.5,-185 609.5,-185 609.5,-149 552.5,-149"/>
+<text text-anchor="middle" x="581" y="-163.4" font-family="Times Roman,serif" font-size="14.00">Shark</text>
 </g>
-<!-- 9&#45;&gt;5 -->
-<g id="edge14" class="edge"><title>9&#45;&gt;5</title>
-<path fill="none" stroke="black" d="M426.854,-185.292C422.553,-193.895 417.336,-204.329 412.585,-213.83"/>
-<polygon fill="none" stroke="black" points="409.383,-212.409 408.041,-222.918 415.644,-215.539 409.383,-212.409"/>
+<!-- 9&#45;&gt;8 -->
+<g id="edge14" class="edge"><title>9&#45;&gt;8</title>
+<path fill="none" stroke="black" d="M552.249,-182.71C549.503,-183.922 546.725,-185.043 544,-186 468.252,-212.584 443.491,-197.636 367,-222 366.553,-222.142 366.104,-222.288 365.654,-222.437"/>
+<polygon fill="none" stroke="black" points="364.306,-219.203 356.112,-225.92 366.706,-225.778 364.306,-219.203"/>
 </g>
 <!-- 10 -->
 <g id="node9" class="node"><title>10</title>
-<polygon fill="none" stroke="black" points="201.5,-1 201.5,-37 394.5,-37 394.5,-1 201.5,-1"/>
-<text text-anchor="middle" x="298" y="-15.4" font-family="Times Roman,serif" font-size="14.00">ArmoredSharkWithLasers</text>
+<polygon fill="none" stroke="black" points="435.5,-1 435.5,-37 628.5,-37 628.5,-1 435.5,-1"/>
+<text text-anchor="middle" x="532" y="-15.4" font-family="Times Roman,serif" font-size="14.00">ArmoredSharkWithLasers</text>
 </g>
-<!-- 10&#45;&gt;8 -->
-<g id="edge18" class="edge"><title>10&#45;&gt;8</title>
-<path fill="none" stroke="black" d="M323.686,-37.1024C337.288,-46.6883 354.172,-58.5875 368.861,-68.9403"/>
-<polygon fill="none" stroke="black" points="367.025,-71.9281 377.215,-74.828 371.058,-66.2063 367.025,-71.9281"/>
+<!-- 10&#45;&gt;3 -->
+<g id="edge16" class="edge"><title>10&#45;&gt;3</title>
+<path fill="none" stroke="black" d="M506.069,-37.1024C492.338,-46.6883 475.294,-58.5875 460.464,-68.9403"/>
+<polygon fill="none" stroke="black" points="458.226,-66.2338 452.03,-74.828 462.233,-71.9736 458.226,-66.2338"/>
 </g>
 <!-- 11 -->
 <g id="node10" class="node"><title>11</title>
-<polygon fill="none" stroke="black" points="202.5,-75 202.5,-111 337.5,-111 337.5,-75 202.5,-75"/>
-<text text-anchor="middle" x="270" y="-89.4" font-family="Times Roman,serif" font-size="14.00">SharkWithLasers</text>
+<polygon fill="none" stroke="black" points="491.5,-75 491.5,-111 626.5,-111 626.5,-75 491.5,-75"/>
+<text text-anchor="middle" x="559" y="-89.4" font-family="Times Roman,serif" font-size="14.00">SharkWithLasers</text>
 </g>
 <!-- 10&#45;&gt;11 -->
-<g id="edge16" class="edge"><title>10&#45;&gt;11</title>
-<path fill="none" stroke="black" d="M291.079,-37.2921C287.857,-45.8053 283.958,-56.1115 280.393,-65.5329"/>
-<polygon fill="none" stroke="black" points="277.107,-64.3268 276.842,-74.9183 283.654,-66.8041 277.107,-64.3268"/>
+<g id="edge18" class="edge"><title>10&#45;&gt;11</title>
+<path fill="none" stroke="black" d="M538.674,-37.2921C541.748,-45.7157 545.462,-55.8948 548.87,-65.2351"/>
+<polygon fill="none" stroke="black" points="545.687,-66.7237 552.403,-74.9183 552.263,-64.3244 545.687,-66.7237"/>
 </g>
-<!-- 11&#45;&gt;6 -->
-<g id="edge22" class="edge"><title>11&#45;&gt;6</title>
-<path fill="none" stroke="black" d="M270,-111.292C270,-119.536 270,-129.462 270,-138.638"/>
-<polygon fill="none" stroke="black" points="266.5,-138.918 270,-148.918 273.5,-138.918 266.5,-138.918"/>
+<!-- 11&#45;&gt;5 -->
+<g id="edge20" class="edge"><title>11&#45;&gt;5</title>
+<path fill="none" stroke="black" d="M508.14,-111.008C477.042,-122.019 437.248,-136.108 405.359,-147.399"/>
+<polygon fill="none" stroke="black" points="403.993,-144.17 395.735,-150.807 406.329,-150.768 403.993,-144.17"/>
 </g>
 <!-- 11&#45;&gt;9 -->
-<g id="edge20" class="edge"><title>11&#45;&gt;9</title>
-<path fill="none" stroke="black" d="M314.527,-111.064C337.395,-120.55 365.832,-132.668 398.188,-147.738"/>
-<polygon fill="none" stroke="black" points="396.877,-150.989 407.417,-152.067 399.85,-144.651 396.877,-150.989"/>
+<g id="edge22" class="edge"><title>11&#45;&gt;9</title>
+<path fill="none" stroke="black" d="M564.438,-111.292C566.943,-119.716 569.969,-129.895 572.746,-139.235"/>
+<polygon fill="none" stroke="black" points="569.42,-140.33 575.624,-148.918 576.129,-138.335 569.42,-140.33"/>
 </g>
 <!-- 12 -->
 <g id="node11" class="node"><title>12</title>
-<polygon fill="none" stroke="black" points="468.5,-75 468.5,-111 625.5,-111 625.5,-75 468.5,-75"/>
-<text text-anchor="middle" x="547" y="-89.4" font-family="Times Roman,serif" font-size="14.00">OrcaWithNunchucks</text>
+<polygon fill="none" stroke="black" points="203.5,-75 203.5,-111 360.5,-111 360.5,-75 203.5,-75"/>
+<text text-anchor="middle" x="282" y="-89.4" font-family="Times Roman,serif" font-size="14.00">OrcaWithNunchucks</text>
 </g>
-<!-- 12&#45;&gt;4 -->
-<g id="edge24" class="edge"><title>12&#45;&gt;4</title>
-<path fill="none" stroke="black" d="M493.239,-111.083C467.074,-120.32 435.11,-132.245 399.474,-148.012"/>
-<polygon fill="none" stroke="black" points="398.032,-144.822 390.336,-152.104 400.893,-151.211 398.032,-144.822"/>
+<!-- 12&#45;&gt;7 -->
+<g id="edge26" class="edge"><title>12&#45;&gt;7</title>
+<path fill="none" stroke="black" d="M276.562,-111.292C274.057,-119.716 271.031,-129.895 268.254,-139.235"/>
+<polygon fill="none" stroke="black" points="264.871,-138.335 265.376,-148.918 271.58,-140.33 264.871,-138.335"/>
 </g>
 <!-- 13 -->
 <g id="node12" class="node"><title>13</title>
-<polygon fill="none" stroke="black" points="486,-149 486,-185 608,-185 608,-149 486,-149"/>
-<text text-anchor="middle" x="547" y="-163.4" font-family="Times Roman,serif" font-size="14.00">NunchuckMixin</text>
+<polygon fill="none" stroke="black" points="413,-149 413,-185 535,-185 535,-149 413,-149"/>
+<text text-anchor="middle" x="474" y="-163.4" font-family="Times Roman,serif" font-size="14.00">NunchuckMixin</text>
 </g>
 <!-- 12&#45;&gt;13 -->
-<g id="edge26" class="edge"><title>12&#45;&gt;13</title>
-<path fill="none" stroke="black" d="M547,-111.292C547,-119.536 547,-129.462 547,-138.638"/>
-<polygon fill="none" stroke="black" points="543.5,-138.918 547,-148.918 550.5,-138.918 543.5,-138.918"/>
+<g id="edge24" class="edge"><title>12&#45;&gt;13</title>
+<path fill="none" stroke="black" d="M328.968,-111.102C355.799,-121.443 389.615,-134.477 417.843,-145.356"/>
+<polygon fill="none" stroke="black" points="416.594,-148.626 427.184,-148.956 419.112,-142.094 416.594,-148.626"/>
 </g>
-<!-- 13&#45;&gt;7 -->
-<g id="edge28" class="edge"><title>13&#45;&gt;7</title>
-<path fill="none" stroke="black" d="M485.686,-183.274C448.479,-193.537 400.19,-207.547 358,-222 357.417,-222.2 356.831,-222.402 356.242,-222.608"/>
-<polygon fill="none" stroke="black" points="354.765,-219.42 346.558,-226.12 357.152,-226.001 354.765,-219.42"/>
+<!-- 13&#45;&gt;6 -->
+<g id="edge28" class="edge"><title>13&#45;&gt;6</title>
+<path fill="none" stroke="black" d="M458.674,-185.292C451.166,-194.253 441.993,-205.201 433.773,-215.013"/>
+<polygon fill="none" stroke="black" points="430.889,-213.005 427.15,-222.918 436.255,-217.501 430.889,-213.005"/>
 </g>
 <!-- 14 -->
 <g id="node13" class="node"><title>14</title>
-<polygon fill="none" stroke="black" points="412,-1 412,-37 628,-37 628,-1 412,-1"/>
-<text text-anchor="middle" x="520" y="-15.4" font-family="Times Roman,serif" font-size="14.00">ArmoredOrcaWithNunchucks</text>
+<polygon fill="none" stroke="black" points="202,-1 202,-37 418,-37 418,-1 202,-1"/>
+<text text-anchor="middle" x="310" y="-15.4" font-family="Times Roman,serif" font-size="14.00">ArmoredOrcaWithNunchucks</text>
 </g>
-<!-- 14&#45;&gt;8 -->
-<g id="edge32" class="edge"><title>14&#45;&gt;8</title>
-<path fill="none" stroke="black" d="M491.379,-37.1024C476.081,-46.7779 457.057,-58.8102 440.582,-69.2302"/>
-<polygon fill="none" stroke="black" points="438.312,-66.5246 431.731,-74.828 442.054,-72.4406 438.312,-66.5246"/>
+<!-- 14&#45;&gt;3 -->
+<g id="edge30" class="edge"><title>14&#45;&gt;3</title>
+<path fill="none" stroke="black" d="M338.377,-37.1024C353.544,-46.7779 372.405,-58.8102 388.739,-69.2302"/>
+<polygon fill="none" stroke="black" points="387.201,-72.4005 397.514,-74.828 390.966,-66.4991 387.201,-72.4005"/>
 </g>
 <!-- 14&#45;&gt;12 -->
-<g id="edge30" class="edge"><title>14&#45;&gt;12</title>
-<path fill="none" stroke="black" d="M526.674,-37.2921C529.748,-45.7157 533.462,-55.8948 536.87,-65.2351"/>
-<polygon fill="none" stroke="black" points="533.687,-66.7237 540.403,-74.9183 540.263,-64.3244 533.687,-66.7237"/>
+<g id="edge32" class="edge"><title>14&#45;&gt;12</title>
+<path fill="none" stroke="black" d="M303.079,-37.2921C299.857,-45.8053 295.958,-56.1115 292.393,-65.5329"/>
+<polygon fill="none" stroke="black" points="289.107,-64.3268 288.842,-74.9183 295.654,-66.8041 289.107,-64.3268"/>
 </g>
 <!-- 15 -->
 <g id="node14" class="node"><title>15</title>
 <polygon fill="none" stroke="black" points="646,-1 646,-37 870,-37 870,-1 646,-1"/>
 <text text-anchor="middle" x="758" y="-15.4" font-family="Times Roman,serif" font-size="14.00">ArmoredSharkWithNunchucks</text>
 </g>
-<!-- 15&#45;&gt;8 -->
-<g id="edge36" class="edge"><title>15&#45;&gt;8</title>
-<path fill="none" stroke="black" d="M651.481,-37.0508C586.083,-48.4209 507.553,-62.6592 461.045,-73.9481"/>
-<polygon fill="none" stroke="black" points="459.907,-70.625 451.061,-76.4563 461.613,-77.414 459.907,-70.625"/>
+<!-- 15&#45;&gt;3 -->
+<g id="edge34" class="edge"><title>15&#45;&gt;3</title>
+<path fill="none" stroke="black" d="M651.843,-37.0435C603.103,-46.0953 544.476,-58.0591 483.825,-73.9272"/>
+<polygon fill="none" stroke="black" points="482.847,-70.5656 474.075,-76.5077 484.638,-77.3327 482.847,-70.5656"/>
 </g>
 <!-- 16 -->
 <g id="node15" class="node"><title>16</title>
-<polygon fill="none" stroke="black" points="642.5,-75 642.5,-111 807.5,-111 807.5,-75 642.5,-75"/>
-<text text-anchor="middle" x="725" y="-89.4" font-family="Times Roman,serif" font-size="14.00">SharkWithNunchucks</text>
+<polygon fill="none" stroke="black" points="643.5,-75 643.5,-111 808.5,-111 808.5,-75 643.5,-75"/>
+<text text-anchor="middle" x="726" y="-89.4" font-family="Times Roman,serif" font-size="14.00">SharkWithNunchucks</text>
 </g>
 <!-- 15&#45;&gt;16 -->
-<g id="edge34" class="edge"><title>15&#45;&gt;16</title>
-<path fill="none" stroke="black" d="M749.843,-37.2921C746.046,-45.8053 741.45,-56.1115 737.249,-65.5329"/>
-<polygon fill="none" stroke="black" points="733.94,-64.3597 733.063,-74.9183 740.333,-67.2108 733.94,-64.3597"/>
+<g id="edge36" class="edge"><title>15&#45;&gt;16</title>
+<path fill="none" stroke="black" d="M750.09,-37.2921C746.409,-45.8053 741.952,-56.1115 737.878,-65.5329"/>
+<polygon fill="none" stroke="black" points="734.576,-64.3505 733.819,-74.9183 741.001,-67.1289 734.576,-64.3505"/>
 </g>
 <!-- 16&#45;&gt;9 -->
-<g id="edge38" class="edge"><title>16&#45;&gt;9</title>
-<path fill="none" stroke="black" d="M642.348,-110.406C576.497,-124.429 492.797,-142.658 477,-148 476.122,-148.297 475.238,-148.607 474.35,-148.928"/>
-<polygon fill="none" stroke="black" points="472.806,-145.775 464.801,-152.714 475.387,-152.282 472.806,-145.775"/>
+<g id="edge40" class="edge"><title>16&#45;&gt;9</title>
+<path fill="none" stroke="black" d="M690.529,-111.102C668.814,-122.185 641.041,-136.359 618.895,-147.66"/>
+<polygon fill="none" stroke="black" points="617.099,-144.648 609.783,-152.311 620.281,-150.883 617.099,-144.648"/>
 </g>
 <!-- 16&#45;&gt;13 -->
-<g id="edge40" class="edge"><title>16&#45;&gt;13</title>
-<path fill="none" stroke="black" d="M681.456,-111.102C656.798,-121.354 625.777,-134.25 599.746,-145.072"/>
-<polygon fill="none" stroke="black" points="598.293,-141.886 590.402,-148.956 600.98,-148.349 598.293,-141.886"/>
+<g id="edge38" class="edge"><title>16&#45;&gt;13</title>
+<path fill="none" stroke="black" d="M664.676,-111.008C628.567,-121.611 582.735,-135.07 545.055,-146.135"/>
+<polygon fill="none" stroke="black" points="543.77,-142.864 535.162,-149.04 545.743,-149.58 543.77,-142.864"/>
 </g>
 </g>
 </svg>
