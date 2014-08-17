@@ -902,8 +902,8 @@ Appendix 1: Mixins usually suck
 Mixins are good...
 --------------------
 
-- Mixins are good when each mixin does one thing
-- Reuse is easy - just inherit from the relevant class
+- Mixins are good when each mixin does one thing.
+- Reuse is easy - just inherit from the relevant class.
 - Different combinations of these base classes to give different combinations
   of behavior.
 
@@ -913,11 +913,11 @@ BUT mixins are bad...
 ------------------------
 
 - multiple inheritance gone bananas.
-- easy to *assemble* lego-style iff you understand the classes
   and how they interact.
+- easy to *assemble* lego-style if and only if you understand all the classes.
 - very hard to *understand* if you don't.
-- internal interactions get VERY complex
-- hard to debug a concrete class made by someone else, or by yourself last month
+- internal interactions get VERY complex.
+- hard to debug a concrete class made by someone else, or by yourself last month.
 - python 2 does not give us many tools to talk about contracts, so you really
   have to read every line to understand what the implicit contract is. What can
   I mix this into? What do I have to do?
