@@ -24,18 +24,20 @@ revised for PyGotham 2014
   design.
 
   I work here in NY at Percolate, there are a bunch of us here today
-  and yes we are hiring... we have a booth, come talk to us if you're
-  looking for work.  We're a PyGotham gold sponsor as well!
+  and yes we are hiring...
+  We're a PyGotham gold sponsor as well!
+  we have a booth in the food area, come talk to us if you're looking
+  for work or just curious what we do.
 
   TODO percolate logos
 
 
 ----
 
-Intro: What is this talk and who is it for?
+Intro: What is this talk?
 ===========================================
 
-* how things accidentally get worse
+* how things accidentally get worse over time
 
 * one basic principle of design: *favor composition over inheritance*
 
@@ -44,19 +46,15 @@ Intro: What is this talk and who is it for?
 
 .. note::
 
-  A bit about this talk.
-
   There's some fairly beginner-level OO design tips here;
   there's also some waxing philosophical so I hope the more experienced
   people won't be bored.
 
-  I'm going to talk about:  (see slide)
+  I'm going to talk about 3 things ... (slide)
 
   Some of you know all of this. Some of you know more than me about all of
-  this.  Some of you may disagree with me about this. I wanted to share my
-  experiences and opinions and hopefully all of us (including me) will learn
-  something. Some of you may know none of this and are waiting for me to
-  explain what the hell I'm talking about.
+  this.  Some of you may disagree with me about this. Some of you may
+  know none of this.
 
   First, to get a sense of who's here today - show of hands:
 
@@ -80,8 +78,7 @@ Intro: What is this talk and who is it for?
 Background: Emergent Design
 ============================
 
-In agile processes, we often avoid prolonged design.
-Instead:
+Agile says: Instead of prolonged up-front design:
 
 1. Build the simplest thing possible
 
