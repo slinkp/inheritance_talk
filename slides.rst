@@ -77,15 +77,13 @@ Intro: What is this talk?
 Background: Emergent Design
 ============================
 
-Agile says: Instead of prolonged up-front design:
+Agile mantra:
 
 1. Build the simplest thing possible
 
 2. Refactor
 
 3. Repeat
-
-Result: Always the simplest design possible!
 
 .. note::
 
@@ -114,7 +112,7 @@ Result: Big ball of mud!
 
 .. image:: http://media.trb.com/media/photo/2012-10/73033205.jpg
 
-(source: CBS via Baltimore Sun)
+*(source: CBS via Baltimore Sun)*
 
 .. note::
 
@@ -175,22 +173,7 @@ For today, focusing on overuse of inheritance.
 
 ----
 
-
-Inheritance
--------------
-
-Powerful!
-
-Inheritance, overused, is bad design with real negative consequences.
-
-Overuse is easy to do without intention.
-(almost inevitable?)
-
-We all do it, let's think about it and stop.
-
-----
-
-Failure to Emerge → Incremental Non-Design
+Why do we over-use inheritance?
 -----------------------------------------------
 
 Bad defaults:
@@ -201,11 +184,8 @@ Bad defaults:
 
 * Default design pattern: Template Method
 
-Hard to untangle once started.
+Hard to untangle.
 
-Result: Big inheritance graph grows forever.
-
-It's not just me.
 
 .. note::
 
@@ -270,7 +250,8 @@ Why is too much inheritance bad?
   I'm going to show a simple contrived example, and a real-world example
   of the kinds of problems I'm talking about.
 
-  I'm going to show you why they're problems.
+  I'm going to show you why they're problems, show you 3 or 4 common symptoms
+  of overuse.
 
   And what should we do instead?
 
@@ -282,22 +263,6 @@ Why is too much inheritance bad?
 
 ----
 
-Symptoms of Inheritance Overuse
---------------------------------
-
-* Class Explosion
-
-* "Yo-yo" problem
-
-* Poor Separation of Concerns (tight coupling)
-
-* Implicit Contract Everywhere (low cohesion)
-
-
-Let's explain these by example.
-
-
-----
 
 Contrived Example: Requirements
 ---------------------------------
@@ -395,8 +360,8 @@ Another requirement!
 .. image:: static/explosion.gif
    :height: 600px
 
-Class explosion.
-================
+Symptom 1: Class explosion.
+===========================
 
 
 ----
@@ -422,8 +387,8 @@ But even if we stop here forever, it's already bad, because...
 :data-rotate-z: 0
 
 
-Yo-yo problem
-===============
+Symptom 2: Yo-yo problem
+==========================
 
 :data-y: r0
 
@@ -436,24 +401,23 @@ https://en.wikipedia.org/wiki/Yo-yo_problem
 
 .. note::
 
-  With inheritance, when you look at a method call, the place where
-  that method is defined is implicit.
+  With inheritance, when you see a method being called, and
+  you want to understand what's going on,
+  you have to mentally envision the inheritance graph and
+  figure out which class defines the version that's actually getting called.
 
-  If you want to know where it's defined, you have to go hunting for it.
-  When self.foo() calls self.bar() calls self.baz() calls self.fleem()
-  and each of those could be defined in any or all of 12 classes,
-  you find yourself bouncing up and down through the inheritance tree
-  looking for these method definitions. If any are overridden,
-  you have to also reconstruct Python's method resolution order
-  in your head, or find a tool to do it for you.
-
+  Since subclasses can call methods defined in superclasses, and superclasses
+  can also call methods that overridden or even only defined in subclasses,
+  you have to go hunting by bouncing up and down through the inheritance tree
+  looking for these method definitions.
 
   State - instance state, typically attribute assignments - is even worse,
-  because it can happen on literally any line. So you have to grep and and then
-  trace upward to see if you're in a relevant method.
+  because it can change on literally any line.
 
   Multiple inheritance makes it even more fun - it's not like being a yo-yo,
   it's like being a pinball and bouncing all over the place.
+  You have to reconstruct Python's method resolution order
+  in your head, or find a tool to do it for you.
 
 ----
 
@@ -477,11 +441,6 @@ Where are shoot() and eat() defined?
 .. note::
 
   It starts innocuously enough...
-
-  When you see "self", you don't know if it currently means a shark, or a base
-  Animal, or a thing with lasers, or a base Weapon, or a thing with armor?  You
-  have to look all over, with only the names to give you clues.
-
 
 ----
 
@@ -515,8 +474,9 @@ Who is "self"?
   Put another way: It's interesting to ask yourself in each method definition,
   what kind of object do I mean when I say "self"?
 
-  Implicitly it could rely on any combination of behaviors or states supported
-  by any of the base classes.
+  You don't know if it currently means a shark, or a base Animal, or a thing
+  with lasers, or a base Weapon, or a thing with armor?  You have to look all
+  over, with only the names to give you clues.
 
 
 ----
@@ -524,8 +484,8 @@ Who is "self"?
 :data-y: r5000
 :data-x: r0
 
-Poor Separation of Concerns
-=============================
+Symptom 3: Poor Separation of Concerns
+==========================================
 
 `ArmoredSharkWithLasers` will have methods related to sharks, lasers, and armor.
 
