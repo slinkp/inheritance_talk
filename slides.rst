@@ -130,11 +130,10 @@ Result: Big ball of mud!
 "We must imagine Sisyphus happy"
 ==================================
 
+"The struggle itself ... is enough to fill a man's heart". -- Camus
+
  .. image:: static/whsyh0b.gif
     :width: 500px
-
-
-(this title is from Camus)
 
 .. note::
 
