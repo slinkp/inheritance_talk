@@ -1,9 +1,9 @@
-digraph "classes_No_Name" {
-charset="utf-8"
+digraph "classes" {
 rankdir=BT
-"2" [label="Shark", shape="record"];
-"3" [label="SharkWithLasers", shape="record"];
-"4" [label="LaserMixin", shape="record"];
-"3" -> "2" [arrowhead="empty", arrowtail="none"];
-"3" -> "4" [arrowhead="empty", arrowtail="none"];
+charset="utf-8"
+"shark_inherit_1.LaserMixin" [color="black", fontcolor="black", label=<LaserMixin>, shape="record", style="solid"];
+"shark_inherit_1.Shark" [color="black", fontcolor="black", label=<Shark>, shape="record", style="solid"];
+"shark_inherit_1.SharkWithLasers" [color="black", fontcolor="black", label=<SharkWithLasers>, shape="record", style="solid"];
+"shark_inherit_1.SharkWithLasers" -> "shark_inherit_1.LaserMixin" [arrowhead="empty", arrowtail="none"];
+"shark_inherit_1.SharkWithLasers" -> "shark_inherit_1.Shark" [arrowhead="empty", arrowtail="none"];
 }

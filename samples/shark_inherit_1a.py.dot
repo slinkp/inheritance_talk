@@ -1,20 +1,20 @@
-digraph "classes_No_Name" {
-charset="utf-8"
+digraph "classes" {
 rankdir=BT
-"2" [label="OrcaWithLasers", shape="record"];
-"3" [label="Orca", shape="record"];
-"4" [label="LaserMixin", shape="record"];
-"5" [label="Shark", shape="record"];
-"6" [label="OrcaWithNunchucks", shape="record"];
-"7" [label="NunchuckMixin", shape="record"];
-"8" [label="SharkWithLasers", shape="record"];
-"9" [label="SharkWithNunchucks", shape="record"];
-"2" -> "3" [arrowhead="empty", arrowtail="none"];
-"2" -> "4" [arrowhead="empty", arrowtail="none"];
-"6" -> "3" [arrowhead="empty", arrowtail="none"];
-"6" -> "7" [arrowhead="empty", arrowtail="none"];
-"8" -> "5" [arrowhead="empty", arrowtail="none"];
-"8" -> "4" [arrowhead="empty", arrowtail="none"];
-"9" -> "5" [arrowhead="empty", arrowtail="none"];
-"9" -> "7" [arrowhead="empty", arrowtail="none"];
+charset="utf-8"
+"shark_inherit_1a.LaserMixin" [color="black", fontcolor="black", label=<LaserMixin>, shape="record", style="solid"];
+"shark_inherit_1a.NunchuckMixin" [color="black", fontcolor="black", label=<NunchuckMixin>, shape="record", style="solid"];
+"shark_inherit_1a.Orca" [color="black", fontcolor="black", label=<Orca>, shape="record", style="solid"];
+"shark_inherit_1a.OrcaWithLasers" [color="black", fontcolor="black", label=<OrcaWithLasers>, shape="record", style="solid"];
+"shark_inherit_1a.OrcaWithNunchucks" [color="black", fontcolor="black", label=<OrcaWithNunchucks>, shape="record", style="solid"];
+"shark_inherit_1a.Shark" [color="black", fontcolor="black", label=<Shark>, shape="record", style="solid"];
+"shark_inherit_1a.SharkWithLasers" [color="black", fontcolor="black", label=<SharkWithLasers>, shape="record", style="solid"];
+"shark_inherit_1a.SharkWithNunchucks" [color="black", fontcolor="black", label=<SharkWithNunchucks>, shape="record", style="solid"];
+"shark_inherit_1a.OrcaWithLasers" -> "shark_inherit_1a.LaserMixin" [arrowhead="empty", arrowtail="none"];
+"shark_inherit_1a.OrcaWithLasers" -> "shark_inherit_1a.Orca" [arrowhead="empty", arrowtail="none"];
+"shark_inherit_1a.OrcaWithNunchucks" -> "shark_inherit_1a.NunchuckMixin" [arrowhead="empty", arrowtail="none"];
+"shark_inherit_1a.OrcaWithNunchucks" -> "shark_inherit_1a.Orca" [arrowhead="empty", arrowtail="none"];
+"shark_inherit_1a.SharkWithLasers" -> "shark_inherit_1a.LaserMixin" [arrowhead="empty", arrowtail="none"];
+"shark_inherit_1a.SharkWithLasers" -> "shark_inherit_1a.Shark" [arrowhead="empty", arrowtail="none"];
+"shark_inherit_1a.SharkWithNunchucks" -> "shark_inherit_1a.NunchuckMixin" [arrowhead="empty", arrowtail="none"];
+"shark_inherit_1a.SharkWithNunchucks" -> "shark_inherit_1a.Shark" [arrowhead="empty", arrowtail="none"];
 }
