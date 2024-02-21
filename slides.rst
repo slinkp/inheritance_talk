@@ -344,6 +344,7 @@ Another requirement!
 
 .. image:: static/shark_inherit_3.py.dot.svg
 
+Uh-oh.
 
 ----
 
@@ -410,8 +411,12 @@ https://en.wikipedia.org/wiki/Yo-yo_problem
   you have to go hunting by bouncing up and down through the inheritance tree
   looking for these method definitions.
 
-  State - instance state, typically attribute assignments - is even worse,
-  because it can change on literally any line.
+  Your development tools like IDEs and language servers can do the grunt
+  work for you of course, but that doesn't mean you can _understand_
+  the design, or that it's any good.
+
+  Understanding state - instance state, typically via attribute assignments -
+  is even worse, because it can change on literally any line.
 
   Multiple inheritance makes it even more fun - it's not like being a yo-yo,
   it's like being a pinball and bouncing all over the place.
@@ -446,7 +451,7 @@ Where are shoot() and eat() defined?
 :data-y: r-2000
 :data-x: r0
 
-Okay, easy in that example.
+Easy to guess in that example.
 
 .. code:: python
     
