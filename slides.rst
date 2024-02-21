@@ -542,10 +542,15 @@ Composition: Usually Better
 
 ----
 
-Better: Fewer Classes
----------------------
+Better: Fewer Classes, Simpler Tree
+------------------------------------
 
 .. image:: static/shark_composition_3.py.dot.svg
+
+- Total classes reduced from 15 to 7.
+- Tree height reduced from 4 to 2.
+- Tree growth is linear instead of exponential!
+- Stopped using multiple inheritance.
 
 
 ----
@@ -635,7 +640,7 @@ A real-world story
 .. note::
 
   One day I was working on some rest API endpoints at my job.
-
+  I had these requirements.
 
 ----
 
@@ -654,7 +659,7 @@ Started with...
 
 :id: center1
 
-Solution...
+Solution for adding a new Salmon view...
 
 .. image:: static/aa_final.dot.svg
    :width: 1000px
@@ -703,10 +708,10 @@ Solution...
 
    ----
 
-Better solution!
+Better approach!
 ======================================
 
-Let's refactor SharkWithArmor!
+Let's walk through refactoring SharkWithArmor!
 
 ----
 
@@ -829,10 +834,6 @@ END
 =================
 
 Questions?
-
-For more (references and some more rambling):
-
-https://bitly.com/bundles/slinkp/7
 
 ----
 
