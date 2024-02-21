@@ -7,12 +7,6 @@ shout() { echo "$0: $*" >&2; }  # Just echo an error and the program name
 barf() { shout "$*"; exit 111; }
 safe() { "$@" || barf "cannot $*"; }
 
-if [ ! -d "bin" ]; then
-	safe virtualenv . 
-fi	
-
-source ./bin/activate || barf "No virtualenv?"
-
 # Install stuff if needed
 #TMP_REQ=`mktemp -t req.txt`
 #safe ./bin/pip freeze > $TMP_REQ 
