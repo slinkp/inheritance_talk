@@ -20,8 +20,10 @@ safe cd samples
 for f in *py; do
     echo Generating $f.dot file from $f...
     pyreverse -A -k $f
-    # Maybe this was a quirk of older versions
+    # Name convention from older pyreverse version
     test -f classes_No_Name.dot && mv classes_No_Name.dot $f.dot
+    # Newer name convention
+    test -f classes.dot && mv classes.dot $f.dot
 done
 
 dot -? > /dev/null 2>&1 || barf "You don't appear to have the 'dot' command. Install graphviz.  Eg. on OSX with Homebrew, try 'brew install graphviz'."
