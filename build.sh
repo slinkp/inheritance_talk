@@ -41,4 +41,4 @@ echo Output is in $PWD/html/
 
 echo Serving  \(ctrl-C to exit\)
 cd $PWD/html/
-python -m SimpleHTTPServer
+python -m http.server

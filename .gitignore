@@ -42,3 +42,4 @@ zip_data
 *_flymake.*
 file:/
 TAGS
+.direnv/
