@@ -38,6 +38,8 @@ cd -
 mv samples/*svg static/
 
 # Build the slides.
+rm -rf html
+mkdir html
 safe hovercraft slides.rst html/
 # Doesn't seem to include my css?
 cp -f static/*css $PWD/html/
